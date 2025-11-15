@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <title>
+        FlexSearch - Index
+    </title>
+    <style>
+        p {
+            margin: 4px 0;
+        }
+
+        mark {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>files to search:</p>
+        <div id='list'> </div>
+    </div>
+    <div>
+        <div>
+            <label>preset:</label>
+            <select id="preset">
+                <option>memory</option>
+                <option>performance</option>
+                <option>match</option>
+                <option>score</option>
+                <option selected>default</option>
+            </select>
+            <label>tokenize:</label>
+            <select id="tokenize">
+                <option>strict</option>
+                <option selected>forward</option>
+                <option>reverse</option>
+                <option>full</option>
+            </select>
+            <input id='resolution' type='number' min="0" max="10" value='9'></input>
+            <input id='depth' type='number' min="0" max="10" value='1'></input>
+            <input id='minlength' type='number' min="0" max="10" value='1'></input>
+        </div>
+
+        <input id='inputText' type='text'></input>
+    </div>
+    <div id='output'></div>
+</body>
+
+<script src="https://rawcdn.githack.com/nextapps-de/flexsearch/0.7.31/dist/flexsearch.bundle.js">
+</script>
+<script>
+
+    /// see: https://github.com/mdn/yari/blob/main/client/src/search.tsx#L39
+
+    function splitQuery(term) {
+        return term
+            .trim()
+            .toLowerCase()
+            ///.replace(".", " .") // Allows to find `Map.prototype.get()` via `Map.get`.
+            .split(/[ ,]+/);
+    }
+
+    function HighlightMatch({title, q}) {
+        // Split on highlight term and include term into parts, ignore case.
+        const words = splitQuery(q);
+        // $& means the whole matched string
+        const regexWords = words.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        const regex = regexWords.map((word) => `(${word})`).join("|");
+        const parts = title.split(new RegExp(regex, "gi"));
+        console.log(parts);
+        const _out = parts.filter(Boolean).map((part, i) => {
+            if (words.includes(part.toLowerCase())) {
+                return `<mark>${part}</mark>`;
+            } else {
+                return `<span>${part}</span>`;
+            }
+        })
+        console.log(_out);
+        return _out;
+    }
+
+    function Search() {
+        const ids = index.search(inputElem.value);
+        const result = recipes.filter((recipe) => ids.includes(recipe.id));
+        //console.clear();
+
+        outputElem.replaceChildren();
+        let _outHTMLString = '';
+        result.forEach(ii => {
+            //console.debug(ii.id, ii.title);
+            const _out = HighlightMatch({title: ii.title, q: inputElem.value});
+            _outHTMLString += `<p>${_out.join('')}</p>`;
+        });
+        outputElem.innerHTML = _outHTMLString;
+    }
+    const outputElem = document.querySelector("#output");
+    const inputElem = document.querySelector("#inputText");
+    inputElem.onkeyup = Search;
+
+    // my collection
+    const recipes = [
+        {id: 1, title: 'Orange cake', tag: 'tagA,tagB', desc: "new work egg and sand"},
+        {id: 2, title: 'New York-Style Bacon Egg and Cheese Sandwich', tag: 'tagA', desc: "cookes srogrimp"},
+        {id: 3, title: 'Bacon Wrapped Cheese Stuffed Meatloaf', tag: 'tagA,tagB', desc: "cheese tagZ is ii yogurt"},
+        {id: 4, title: 'French Yogurt Cake', tag: 'tagA,tagC', desc: "work parmen and is you"},
+        {id: 5, title: 'Gougeres (French Cheese Puffs)', tag: 'tagE,tagB', desc: "whom you like first work and sand"},
+        {id: 6, title: 'Authentic Brazilian Cheese Bread (Pão de Queijo)', tag: 'tagB', desc: "into camer dough shttno is sand"},
+        {id: 7, title: 'Camarão in into (Brazilian Shrimp Stuffed Pumpkin)', tag: 'tagZ', desc: "s2gie and dough orges"},
+        {id: 8, title: 'Parmesan Cheese Muffins', tag: 'tagZ', desc: "new amerian egg bacon oreos"},
+        {id: 9, title: 'Cookie Dough Stuffed Oreos', tag: 'tagC', desc: "bfirch authentic egg and sand"},
+        {id: 10, title: 'Cookie Dough Stuffed Oreos', tag: 'tagE', desc: "new whous egg and sand"},
+        {id: 11, title: 'a a a a a is is is is i i i i i', tag: 'taga,tagb', desc: " and sand"},
+        {id: 12, title: '2 Cookie Stuffe Dough Oreos', tag: 'taga,tagb', desc: "conennnn and sand"},
+    ]
+
+    let _listHTMLStr = '<ul>';
+    recipes.forEach(v => {
+        _listHTMLStr += `<li>${v.title}</li>`;
+    });
+    _listHTMLStr += '</ul>';
+    const listElem = document.querySelector("#list");
+    listElem.innerHTML = _listHTMLStr;
+
+    let index;
+
+    function CreateIndex() {
+        const options = {
+            //charset: "latin:extra",
+            preset: document.querySelector('#preset').value,
+            tokenize: document.querySelector('#tokenize').value,
+            resolution: parseInt(document.querySelector('#resolution').value),
+            cache: false,
+            context: {
+                depth: parseInt(document.querySelector('#depth').value),
+            },
+            minlength: parseInt(document.querySelector('#minlength').value),
+            /*
+            filter: function (value) {
+                console.log(value);
+                // just add values with length > 1 to the index
+                return value.length > 2;
+            }
+            */
+            filter: [
+                "in",
+                "into",
+                "is",
+                "isn't",
+                "it",
+                "it's",
+                "a",
+                "i",
+            ]
+            /*
+            */
+        }
+        index = new FlexSearch.Index(options);
+        // index my collection
+        recipes.forEach((recipe) => {
+            index.add(recipe.id, recipe.title)
+        })
+        return index;
+    }
+    CreateIndex();
+
+    document.querySelector('#preset').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#tokenize').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#resolution').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#depth').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#minlength').onchange = e => {CreateIndex(); Search();}
+
+    inputElem.focus();
+
+</script>
+
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>webgl</title>
+    <script src='./utils-webgl.js'></script>
+</head>
+
+<body style="margin:0;">
+    <canvas id="my_Canvas"></canvas>
+
+    <script>
+        const vertCode = `
+attribute vec2 coordinates;
+void main(void) {
+    gl_Position = vec4(coordinates,0.0, 1.0);
+    //gl_PointSize = 10.0;
+}`;
+        const fragCode = `
+void main(void) {
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}`
+        const _canvas = document.getElementById('my_Canvas');
+        const _gl = _canvas.getContext('webgl2');
+        const WebGLUtil = window.WebGLUtil;
+        window.addEventListener("resize", e => {
+            WebGLUtil.resizeCanvas(_canvas, window.document.body.clientWidth);
+            WebGLUtil.setupBasicState(_gl, _canvas.width, _canvas.height);
+            _render();
+        });
+        WebGLUtil.resizeCanvas(_canvas, window.document.body.clientWidth);
+        WebGLUtil.setupBasicState(_gl, _canvas.width, _canvas.height);
+        const _shaderProgram = WebGLUtil.createProgram(_gl, vertCode, fragCode);
+        _gl.enable(_gl.DEPTH_TEST);
+
+        function _render() {
+            _gl.clear(_gl.COLOR_BUFFER_BIT);
+
+            // Draw the triangle
+            _gl.drawArrays(_gl.TRIANGLES, 0, 3);
+            //_gl.drawArrays(_gl.LINES, 0, 3);
+            //_gl.drawArrays(_gl.LINE_STRIP, 0, 3);
+            //_gl.drawArrays(_gl.LINE_LOOP, 0, 3);
+            //_gl.drawArrays(_gl.POINTS, 0, 3);
+        }
+
+        const _vertices = [-0.5, 0.5, -0.5, -0.5, 0.5, -0.5,];
+        const _vertex_buffer = WebGLUtil.createBuffer(_gl, _gl.ARRAY_BUFFER, _vertices);
+
+        _gl.useProgram(_shaderProgram);
+        _gl.bindBuffer(_gl.ARRAY_BUFFER, _vertex_buffer);
+        const _coord = _gl.getAttribLocation(_shaderProgram, "coordinates");
+        _gl.vertexAttribPointer(_coord, 2, _gl.FLOAT, false, 0, 0);
+        _gl.enableVertexAttribArray(_coord);
+        _render();
+    </script>
+</body>
+
+</html>

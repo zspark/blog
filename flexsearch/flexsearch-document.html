@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <title>
+        FlexSearch - Document
+    </title>
+    <style>
+        p {
+            margin: 4px 0;
+        }
+
+        mark {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <label>preset:</label>
+            <select id="preset">
+                <option>memory</option>
+                <option>performance</option>
+                <option>match</option>
+                <option>score</option>
+                <option selected>default</option>
+            </select>
+            <label>tokenize:</label>
+            <select id="tokenize">
+                <option>strict</option>
+                <option selected>forward</option>
+                <option>reverse</option>
+                <option>full</option>
+            </select>
+            <input id='resolution' type='number' min="0" max="10" value='9'></input>
+            <input id='depth' type='number' min="0" max="10" value='1'></input>
+            <input id='minlength' type='number' min="0" max="10" value='1'></input>
+        </div>
+
+        <input id='inputText' type='text'></input>
+    </div>
+    <div id='output'></div>
+</body>
+
+<script src="https://rawcdn.githack.com/nextapps-de/flexsearch/0.7.31/dist/flexsearch.bundle.js">
+</script>
+<script src="./mock-data.js"> </script>
+<script>
+
+    /// see: https://github.com/mdn/yari/blob/main/client/src/search.tsx#L39
+
+    function splitQuery(term) {
+        return term
+            .trim()
+            .toLowerCase()
+            ///.replace(".", " .") // Allows to find `Map.prototype.get()` via `Map.get`.
+            .split(/[ ,]+/);
+    }
+
+    function HighlightMatch({title, q}) {
+        // Split on highlight term and include term into parts, ignore case.
+        const words = splitQuery(q);
+        // $& means the whole matched string
+        const regexWords = words.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        const regex = regexWords.map((word) => `(${word})`).join("|");
+        const parts = title.split(new RegExp(regex, "gi"));
+        console.log(parts);
+        const _out = parts.filter(Boolean).map((part, i) => {
+            if (words.includes(part.toLowerCase())) {
+                return `<mark>${part}</mark>`;
+            } else {
+                return `<span>${part}</span>`;
+            }
+        })
+        console.log(_out);
+        return _out;
+    }
+
+    function Search() {
+        const ids = index.search(inputElem.value);
+        console.log(ids);
+        const result = window.mockData.filter((recipe) => ids.includes(recipe.id));
+        //console.clear();
+
+        outputElem.replaceChildren();
+        let _outHTMLString = '';
+        result.forEach(ii => {
+            //console.debug(ii.id, ii.title);
+            const _out = HighlightMatch({title: ii.title, q: inputElem.value});
+            _outHTMLString += `<p>${_out.join('')}</p>`;
+        });
+        outputElem.innerHTML = _outHTMLString;
+    }
+    const outputElem = document.querySelector("#output");
+    const inputElem = document.querySelector("#inputText");
+    inputElem.onkeyup = Search;
+
+    function DisplayMockData() {
+        let _listHTMLStr = '<ul>';
+        window.mockData.forEach(v => {
+            _listHTMLStr += `<li>${v.title}</li>`;
+        });
+        _listHTMLStr += '</ul>';
+        const listElem = document.createElement('div');
+        listElem.innerHTML = _listHTMLStr;
+        document.body.prepend(listElem);
+    }
+    DisplayMockData();
+
+    let index;
+
+    function CreateIndex() {
+        const options = {
+            //charset: "latin:extra",
+            preset: document.querySelector('#preset').value,
+            tokenize: document.querySelector('#tokenize').value,
+            resolution: parseInt(document.querySelector('#resolution').value),
+            cache: false,
+            context: {
+                depth: parseInt(document.querySelector('#depth').value),
+            },
+            minlength: parseInt(document.querySelector('#minlength').value),
+            filter: ["in", "into", "is", "isn't", "it", "it's", "a", "i",]
+        }
+
+        const _oA = JSON.parse(JSON.stringify(options)); _oA.field = "title";
+        const _oB = JSON.parse(JSON.stringify(options)); _oB.field = "desc";
+        index = new FlexSearch.Document({
+            document: {
+                id: "id",
+                tag: "tag",
+                index: [_oA, _oB],
+                store: ['title', 'desc'],
+                bool: "and",
+            }
+        });
+        window.mockData.forEach((recipe) => {
+            index.add(recipe.id, recipe)
+        })
+        return index;
+    }
+    CreateIndex();
+
+    document.querySelector('#preset').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#tokenize').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#resolution').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#depth').onchange = e => {CreateIndex(); Search();}
+    document.querySelector('#minlength').onchange = e => {CreateIndex(); Search();}
+
+    inputElem.focus();
+
+</script>
+
+</html>
