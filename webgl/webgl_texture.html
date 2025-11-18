@@ -38,6 +38,9 @@ void main(void) {
     <script>
         const vertCode = document.getElementById("vertex-source").text.trim();
         const fragCode = document.getElementById("fragment-source").text.trim();
+        console.log("vertCode", vertCode);
+        console.log("fragCode", fragCode);
+
         const halfSize = 0.8;
         const vertices = [
             -halfSize, halfSize,/*uv*/0, 1,
@@ -48,7 +51,7 @@ void main(void) {
             halfSize, halfSize,/*uv*/1, 1,
             -halfSize, halfSize,/*uv*/0, 1,
         ];
-
+        console.log("vertices", vertices);
 
         const WebGLUtil = window.WebGLUtil;
         const canvas = document.getElementById('my_Canvas');
@@ -62,7 +65,7 @@ void main(void) {
 
 
         WebGLUtil.createTexture(gl, '../assets/uv_grid_opengl.jpg', 0).then(tex => {
-
+            console.log("texture loaded", tex);
             gl.useProgram(shaderProgram);
             const _loc_u_texture = gl.getUniformLocation(shaderProgram, 'u_texture');
             gl.uniform1i(_loc_u_texture, 0);
