@@ -11,7 +11,7 @@
     <meta name="keywords" content="slog,blog,computer,program" />
     <meta name="referrer" content="always" />
     <title>Jerry Chaos</title>
-    <link href="./assets/favicon.ico" rel="shortcut icon">
+    <link href="./favicon.ico" rel="shortcut icon">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -24,63 +24,58 @@
         </header>
 
         <main class="w-full grid grid-cols-[100px_auto_100px]">
-            <div>
+            <div></div>
+
+            <div id="mainDiv" class="mx-4 py-3">
+                <!-- Main Content -->
             </div>
-            <div slg-widget-page-new class="mx-4 py-3">
-                <ul>
-                    <li>
-                        <a href="./misc/computer_graphics.html">[PDF] Computer Graphics</a>
-                    </li>
-                    <li>
-                        <a href="./misc/ielts_writing.html">[PDF] IELTS Writing</a>
-                    </li>
-                    <li>
-                        <a href="./misc/science_and_thinking.html">[PDF] Science and Thinking</a>
-                    </li>
-                    <li>
-                        <a href="./misc/LaTex_editor.html">LaTex editor</a>
-                    </li>
-                    <li>
-                        <a href="./misc/latlon_to_tile_coord.html">latlon to tile coord</a>
-                    </li>
-                    <li>
-                        <a href="./misc/gis_server_stress_testing.html">GIS server stress testing</a>
-                    </li>
-                    <li>
-                        <a href="./memory/index.html">browser Garbage Collection</a>
-                    </li>
-                    <li>
-                        <a href="./flexsearch/flexsearch.html">flex search (弹性搜索)</a>
-                    </li>
-                    <li>
-                        <a href="./tailwindcss/upload-ui.html">tailwindcss upload ui</a>
-                    </li>
-                    <li>
-                        <a href="./webgl/webgl_texture.html">webgl texture</a>
-                    </li>
-                    <li>
-                        <a href="./webgl/triangle.html">webgl triangle</a>
-                    </li>
-                    <li>
-                        <a href="./webgl/webgl-linewidth.html">webgl linewidth</a>
-                    </li>
-                    <li>
-                        <a href="./webgl/webgl-stencil.html">webgl stencil</a>
-                    </li>
-                    <li>
-                        <a href="./webgl/WebGL-loop.html">webgl loop</a>
-                    </li>
-                </ul>
-            </div>
+
         </main>
 
-        <footer class="text-center bg-gray-100 py-14">
+        <!-- <footer class="text-center bg-gray-100 py-14">
             <label class="text-gray-500">
                 Copyright ©️ 2010 - 2025 Jerry Chaos
             </label>
-        </footer>
+        </footer> -->
     </div>
 
 </body>
+
+<script>
+    console.log("Hello Jerry Chaos!");
+    const _list = [
+        { url: "https://stackoverflow.com", name: "Stack Overflow" },
+        { url: "https://www.reddit.com", name: "Reddit" },
+        { url: "https://www.youtube.com", name: "YouTube" },
+        { url: "https://music.youtube.com", name: "YouTube Music" },
+        { url: "https://www.google.com", name: "Google" },
+        { url: "https://drive.google.com/drive/home", name: "Google Drive" },
+        { url: "https://mail.google.com/mail", name: "Gmail" },
+        { url: "https://github.com", name: "GitHub" },
+        { url: "https://www.netflix.com", name: "Netflix" },
+        { url: "https://v.qq.com", name: "腾讯视频" },
+        { url: "https://www.iqiyi.com", name: "爱奇艺" },
+        { url: "https://www.taobao.com", name: "淘宝" },
+        { url: "https://www.tmall.com", name: "天猫" },
+        { url: "https://www.jd.com", name: "京东" },
+        { url: "https://www.bilibili.com", name: "Bilibili" },
+        { url: "https://www.zhihu.com", name: "知乎" },
+        { url: "https://x.com/home", name: "X (Twitter)" },
+        { url: "https://www.icloud.com", name: "iCloud" },
+        { url: "https://photos.google.com", name: "Google Photos" },
+        { url: "https://www.dropbox.com", name: "Dropbox" },
+        { url: "https://translate.google.com", name: "Google Translate" },
+        { url: "https://www.wanyiwan.top/home", name: "Wanyiwan" },
+        { url: "./blog.html", name: "Blog" },
+    ];
+    const mainDiv = document.getElementById("mainDiv");
+    for (const item of _list) {
+        let iconUrl = item.icon ? item.icon : `${item.url}/favicon.ico`;
+        mainDiv.innerHTML += `<div class="flex items-center space-x-2">
+                <img src="${iconUrl}" alt="${item.name}" class="w-4 h-4"/>
+                <a href="${item.url}" target="_blank" class="text-blue-600 hover:text-red-600 hover:underline transition-all">${item.name}</a>
+            </div>`;
+    }
+</script>
 
 </html>
