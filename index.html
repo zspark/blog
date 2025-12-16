@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en_US">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta name="description" content="This is a developing blog site." />
     <meta name="author" content="Jerry Chaos" />
     <meta name="applicable-device" content="pc,pad,mobile" />
     <meta name="referrer" content="always" />
     <title>Jerry Chaos</title>
     <link href="./favicon.ico" rel="shortcut icon">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .icon {
             width: 16px;
@@ -19,132 +17,222 @@
             fill: currentColor;
             display: inline-block;
             vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .icon~a {
+            color: #2563EB;
+            transition-property: all;
+            transition-duration: 150ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+
+        .icon~a:hover {
+            color: #DC2626;
+            text-decoration: underline;
+        }
+
+        .icon-large {
+            width: 20px;
+            height: 20px;
+        }
+
+        .icon-large~a {
+            color: #0029cc;
+            font-size: larger;
+            font-weight: 600;
+        }
+
+        .item-container {
+            display: flex;
+            align-items: center;
+            margin: 5px 5px;
+        }
+
+
+        .card-container {
+            border: 1px solid #c6c6c6;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .card-title {
+            border-bottom: 1px solid #e0e0e0;
+            margin-left: 16px;
+            margin-right: 16px;
+            font-size: 1.25em;
+        }
+
+        .card-content {
+            padding: 16px;
+            padding-top: 0;
         }
     </style>
 </head>
 
-<body>
-    <div class="grid grid-rows-[auto_1fr_160px]">
-        <header class="bg-gray-100 p-14">
-            <div class="text-center">
-                <label class="text-center text-4xl text-gray-500"> Hello World </label>
-            </div>
-        </header>
-
-        <main class="w-full grid grid-cols-[100px_auto_100px]">
-            <div></div>
-
-            <div id="mainDiv" class="mx-4 py-3">
-                <!-- Main Content -->
-            </div>
-
-        </main>
-
-        <!-- <footer class="text-center bg-gray-100 py-14">
-            <label class="text-gray-500">
-                Copyright ©️ 2010 - 2025 Jerry Chaos
-            </label>
-        </footer> -->
-    </div>
-
+<body style="margin: 0;">
+    <main id="mainDivContainer" style="margin: 20px 20px;">
+        <div id="mainDiv"
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+        </div>
+    </main>
 </body>
 
 <script>
-    console.log("Hello Jerry Chaos!");
-    const _list = [
-        { url: "https://v.qq.com", name: "腾讯视频", icon: "icon-tencent-video" },
-        { url: "https://www.iqiyi.com", name: "爱奇艺", icon: "icon-iqiyi" },
-        { url: "https://www.youku.com", name: "优酷", icon: "icon-youku" },
-        { url: "https://www.bilibili.com", name: "Bilibili", icon: "icon-bilibili" },
-        { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
-        { url: "https://www.youtube.com", name: "YouTube", icon: "icon-youtube" },
-        { url: "https://music.youtube.com", name: "YouTube Music", icon: "icon-youtube-music" },
+    console.log("Hello Jerry!");
 
-        { url: "https://www.taobao.com", name: "淘宝", icon: "icon-taobao" },
-        { url: "https://www.tmall.com", name: "天猫", icon: "icon-tmall" },
-        { url: "https://www.jd.com", name: "京东", icon: "icon-jd" },
+    const _commonList = [
+        { url: "https://drive.google.com", name: "Google Drive", icon: "icon-google-drive", large: true },
+        { url: "https://mail.google.com", name: "Google Mail", icon: "icon-google-mail", large: true },
+        { url: "https://gemini.google.com/", name: "Google Gemini", icon: "icon-google-gemini", large: true },
+        { url: "https://chat.openai.com/", name: "ChatGPT", icon: "icon-chatgpt", large: true },
+        { url: "https://docs.google.com", name: "Google Docs", icon: "icon-google-docs" },
+        { url: "https://sheets.google.com", name: "Google Sheets", icon: "icon-google-sheets" },
+        { url: "https://slides.google.com", name: "Google Slides", icon: "icon-google-slides" },
+        { url: "https://translate.google.com", name: "Google Translate", icon: "icon-google-translate", large: true },
+        { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
+        { url: "https://news.google.com", name: "Google News", icon: "icon-google-news" },
+        { url: "https://www.icloud.com", name: "iCloud", icon: "icon-apple-cloud" },
+    ];
+
+    const _videoList = [
+        { url: "https://www.youtube.com", name: "YouTube", icon: "icon-youtube", large: true },
+        { url: "https://music.youtube.com", name: "YouTube Music", icon: "icon-youtube-music", large: true },
+        { url: "https://www.bilibili.com", name: "Bilibili", icon: "icon-bilibili", large: true },
+        { url: "https://v.qq.com", name: "Tencent Video", icon: "icon-tencent-video", large: true },
+        { url: "https://www.iqiyi.com", name: "Iqiyi", icon: "icon-iqiyi" },
+        { url: "https://www.youku.com", name: "Youku", icon: "icon-youku" },
+        { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
+        { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
+    ];
+
+    const _shoppingList = [
+        { url: "https://www.taobao.com", name: "Taobao", icon: "icon-taobao" },
+        { url: "https://www.tmall.com", name: "Tmall", icon: "icon-tmall" },
+        { url: "https://www.jd.com", name: "JD", icon: "icon-jd" },
         { url: "https://www.amazon.com", name: "Amazon", icon: "icon-amazon" },
         { url: "https://www.ebay.com", name: "eBay", icon: "icon-ebay" },
         { url: "https://www.apple.com", name: "Apple", icon: "icon-apple" },
+        { url: "https://www.trademe.co.nz/", name: "Trade Me", icon: "icon-trademe" },
+        { url: "https://www.routledge.com/", name: "Routledge" },
+    ];
 
+    const _devList = [
+        { url: "https://github.com", name: "GitHub", icon: "icon-github", large: true },
         { url: "https://stackoverflow.blog", name: "Stack Overflow Blog", icon: "icon-stack-overflow" },
         { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "icon-stack-overflow" },
         { url: "https://stackexchange.com", name: "Stack Exchange", icon: "icon-stack-exchange" },
         { url: "https://www.reddit.com", name: "Reddit", icon: "icon-reddit" },
 
-        { url: "https://www.google.com", name: "Google", icon: "icon-google-chrome" },
-        { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
-        { url: "https://news.google.com", name: "Google News", icon: "icon-google-news" },
-        { url: "https://drive.google.com", name: "Google Drive", icon: "icon-google-drive" },
-        { url: "https://mail.google.com", name: "Gmail", icon: "icon-google-mail" },
-        { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
-        { url: "https://docs.google.com", name: "Google Docs", icon: "icon-google-docs" },
-        { url: "https://sheets.google.com", name: "Google Sheets", icon: "icon-google-sheets" },
-        { url: "https://slides.google.com", name: "Google Slides", icon: "icon-google-slides" },
-        { url: "https://translate.google.com", name: "Google Translate", icon: "icon-google-translate" },
-        { url: "https://gemini.google.com/", name: "Gemini", icon: "icon-google-gemini" },
-        { url: "https://chat.openai.com/", name: "ChatGPT", icon: "icon-chatgpt" },
-
-        { url: "https://github.com", name: "GitHub", icon: "icon-github" },
         { url: "https://gitlab.com", name: "GitLab", icon: "icon-gitlab" },
         { url: "https://bitbucket.org", name: "Bitbucket", icon: "icon-bitbucket" },
+    ];
 
+
+    const _socialList = [
+        { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-twitter", large: true },
+        { url: "https://www.instagram.com/", name: "Instagram", icon: "icon-instagram" },
+        { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
         { url: "https://www.facebook.com", name: "Facebook", icon: "icon-facebook" },
         { url: "https://www.linkedin.com", name: "LinkedIn", icon: "icon-linkedin" },
-        { url: "https://www.zhihu.com", name: "知乎", icon: "icon-zhihu" },
-        { url: "https://www.douban.com", name: "豆瓣", icon: "icon-douban" },
-        { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-X" },
-        { url: "https://www.instagram.com/jerrychaos/", name: "Instagram Jerry Chaos", icon: "icon-instagram" },
-        { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
+        { url: "https://www.zhihu.com", name: "Zhihu", icon: "icon-zhihu" },
+        { url: "https://www.douban.com", name: "Douban", icon: "icon-douban" },
+        { url: "https://www.discord.com", name: "Discord", icon: "icon-discord" },
+    ];
 
-
-
-        { url: "https://www.icloud.com", name: "iCloud", icon: "icon-apple-cloud" },
-        { url: "https://www.dropbox.com", name: "Dropbox", icon: "icon-dropbox" },
-        { url: "https://www.wanyiwan.top/home", name: "支付宝小游戏", icon: "icon-alipay" },
-        { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion AUT Student Home", icon: "icon-AUT" },
-        { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "AUT Computer Science Course", icon: "icon-AUT" },
-        { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "AUT Community Force Fund Details", icon: "icon-AUT" },
-        { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge Auckland Mayoral Drive" },
+    const _educationList = [
+        { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion Student Home", icon: "icon-AUT", large: true },
+        { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "Scholarship", icon: "icon-AUT", large: true },
+        { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "MCIS", icon: "icon-AUT" },
+        { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
         { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
-        { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services" },
         { url: "https://salttiger.com/", name: "Salt Tiger" },
         { url: "https://www.wolframalpha.com", name: "Wolfram Alpha", icon: "icon-wolfram-alpha" },
         { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "icon-wolfram-alpha" },
+    ];
+
+    const _toolsList = [
+        { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos", large: true },
+        { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-latex", large: true },
+        { url: "https://katex.org/docs/supported.html", name: "KaTeX Supported", icon: "icon-katex", large: true },
+        { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator", large: true },
+        { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
         { url: "https://www.python.org", name: "Python", icon: "icon-python" },
         { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
         { url: "https://quaternions.online/", name: "Quaternions Online" },
         { url: "https://matrixcalc.org/en/", name: "Matrix Calculator", icon: "icon-matrix-calculator" },
         { url: "https://www.andre-gaschler.com/rotationconverter/", name: "Rotation Converter", icon: "icon-rotationconverter" },
-        { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos" },
-        { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-latex" },
-        { url: "https://katex.org/docs/supported.html", name: "KaTeX Supported", icon: "icon-katex" },
-
-        { url: "http://exploringdata.github.io/vis/programming-languages-influence-network/", name: "Programming Languages Influence Network" },
+    ];
+    const _miscList = [
+        { url: "https://www.dropbox.com", name: "Dropbox", icon: "icon-dropbox" },
         { url: "https://exploring-data.com/", name: "Exploring Data" },
-
+        { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services" },
         { url: "https://simplemde.com/", name: "SimpleMDE" },
         { url: "https://wjakob.github.io/nori/", name: "Nori Renderer" },
-        { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
         { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", },
         { url: "https://www.gamedeveloper.com/", name: "Game Developer", },
         { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
-        { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "😊Method of Separating Axes" },
+        { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "Method of Separating Axes" },
         { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
-        { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator" }
+        { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
+        { url: "https://www.google.com", name: "Google Chrome", icon: "icon-google-chrome" },
     ];
 
-    const _defaultIcon = "icon-redstar";
-    const mainDiv = document.getElementById("mainDiv");
-    for (const item of _list) {
-        mainDiv.innerHTML += `<div class="flex items-center space-x-2">
-    <svg class="icon">
-        <use href="./assets/icons.svg#${item.icon ?? _defaultIcon}" xlink:href="./assets/icons.svg#${item.icon ?? _defaultIcon}">
+    const _blogList = [
+        { url: "./blog.html", name: "Jerry Chaos' Blog", large: true },
+        { url: "https://www.songho.ca/", name: "Song Ho Ahn's Homepage" },
+        { url: "https://blog.lmorchard.com", name: "Lmorchard's Blog" },
+        { url: "https://www.jayconrod.com/posts", name: "Jay Conrod's Blog" },
+        { url: "https://dativ.at/lightprobes/", name: "Light Probes in Computer Graphics" },
+        { url: "http://simon-kallweit.me/", name: "Simon Kallweit's Blog" },
+        { url: "https://bruop.github.io/", name: "Bruop's Blog" },
+        { url: "https://rgl.epfl.ch/", name: "Realistic Graphics Lab" },
+        { url: "https://www.uefap.org/", name: "English for Academic Purposes" },
+        { url: "https://gamadu.com/", name: "Gamadu Games" }
+    ];
+
+    function createItem(item) {
+        return `<div class="item-container">
+    <svg class="${item.large ? "icon icon-large" : "icon"}">
+        <use href="./assets/icons.svg#${item.icon ?? _DEFAULT_ICON_}" xlink:href="./assets/icons.svg#${item.icon ?? _DEFAULT_ICON_}">
         </use>
     </svg>
-    <a href="${item.url}" target="_blank" class="text-blue-600 hover:text-red-600 hover:underline transition-all">${item.name}</a>
+    <a href="${item.url}" target="_blank">${item.name}</a>
 </div>`;
     }
+
+    function createCard(title, list) {
+        let itemHTML = "";
+        for (const item of list) {
+            itemHTML += createItem(item);
+        }
+        return `<div class="card-container">
+    <h2 class="card-title">${title}</h2>
+    <div class="card-content">${itemHTML}</div>
+</div>`;
+    }
+
+    const _DEFAULT_ICON_ = "icon-redstar";
+
+    let _renderContent = "";
+    _renderContent += createCard("COMMON", _commonList);
+    _renderContent += createCard("VIDEO & AUDIO", _videoList);
+    _renderContent += createCard("TOOLS", _toolsList);
+    _renderContent += createCard("DEVELOP", _devList);
+    _renderContent += createCard("SOCIAL", _socialList);
+    _renderContent += createCard("EDUCATION", _educationList);
+    _renderContent += createCard("BLOGS", _blogList);
+    _renderContent += createCard("SHOPPING", _shoppingList);
+    _renderContent += createCard("MISC", _miscList);
+    const mainDivContainer = document.getElementById("mainDivContainer");
+    const mainDiv = document.getElementById("mainDiv");
+    mainDiv.remove();
+    mainDiv.innerHTML = _renderContent;
+    mainDivContainer.appendChild(mainDiv);
+
+
+
 </script>
 
 </html>
