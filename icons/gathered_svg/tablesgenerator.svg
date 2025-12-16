@@ -1,0 +1,6 @@
+<!-- sample rectangle -->
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="50" x="0" y="0" fill="#4682b2ff" />
+  <rect width="90" height="130" x="0" y="70" fill="#1e90ffff" />
+  <rect width="90" height="130" x="110" y="70" fill="#1e90ffff" />
+</svg>

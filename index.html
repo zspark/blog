@@ -12,7 +12,15 @@
     <title>Jerry Chaos</title>
     <link href="./favicon.ico" rel="shortcut icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/icons.css">
+    <style>
+        .icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,74 +52,98 @@
 <script>
     console.log("Hello Jerry Chaos!");
     const _list = [
-        { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "Stack_Overflow" },
-        { url: "https://www.reddit.com", name: "Reddit", icon: "Reddit" },
-        { url: "https://www.youtube.com", name: "YouTube", icon: "YouTube" },
-        { url: "https://music.youtube.com", name: "YouTube Music", icon: "YouTube_Music" },
-        { url: "https://www.google.com", name: "Google", icon: "Google" },
-        { url: "https://maps.google.com", name: "Google Maps", icon: "Google_Maps" },
-        { url: "https://news.google.com", name: "Google News", icon: "Google_News" },
-        { url: "https://drive.google.com", name: "Google Drive", icon: "Google_Drive" },
-        { url: "https://mail.google.com", name: "Gmail", icon: "Google_mail" },
-        { url: "https://www.facebook.com", name: "Facebook", icon: "Facebook" },
-        { url: "https://www.linkedin.com", name: "LinkedIn", icon: "LinkedIn" },
-        { url: "https://github.com", name: "GitHub", icon: "GitHub" },
-        { url: "https://v.qq.com", name: "腾讯视频", icon: "vqq" },
-        { url: "https://www.iqiyi.com", name: "爱奇艺", icon: "iqiyi" },
-        { url: "https://www.youku.com", name: "优酷", icon: "youku" },
-        { url: "https://www.taobao.com", name: "淘宝", icon: "taobao" },
-        { url: "https://www.tmall.com", name: "天猫", icon: "tmall" },
-        { url: "https://www.jd.com", name: "京东", icon: "jd" },
-        { url: "https://www.bilibili.com", name: "Bilibili", icon: "Bilibili" },
-        { url: "https://www.zhihu.com", name: "知乎", icon: "zhihu" },
-        { url: "https://www.douban.com", name: "豆瓣", icon: "douban" },
-        { url: "https://x.com/home", name: "X (Twitter)", icon: "X" },
-        { url: "https://www.icloud.com", name: "iCloud", icon: "iCloud" },
-        { url: "https://photos.google.com", name: "Google Photos", icon: "Google_Photos" },
-        { url: "https://www.dropbox.com", name: "Dropbox", icon: "Dropbox" },
-        { url: "https://translate.google.com", name: "Google Translate", icon: "Google_Translate" },
-        { url: "https://www.wanyiwan.top/home", name: "支付宝小游戏", icon: "alipay" },
-        { url: "https://chat.openai.com/", name: "ChatGPT", icon: "ChatGPT", icon: "ChatGPT" },
-        { url: "https://gemini.google.com/", name: "Gemini", icon: "Gemini" },
-        // { url: "https://www.immigration.govt.nz/", name: "New Zealand Immigration" , icon: "https://www.immigration.govt.nz/favicon.ico"},
-        { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion AUT Student Home", icon: "AUT" },
-        { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "AUT Computer Science Course", icon: "AUT" },
-        { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "AUT Community Force Fund Details", icon: "AUT" },
-        { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge Auckland Mayoral Drive", icon: "UniLodge" },
-        { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min", icon: "NUIST" },
-        { url: "https://www.instagram.com/jerrychaos/", name: "Instagram Jerry Chaos", icon: "Instagram" },
-        { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services", icon: "AmyTele" },
-        { url: "https://salttiger.com/", name: "Salt Tiger", icon: "SaltTiger" },
-        { url: "https://www.wolframalpha.com", name: "Wolfram Alpha", icon: "WolframAlpha" },
-        { url: "https://www.python.org", name: "Python", icon: "Python" },
-        { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "MDN" },
-        { url: "https://docs.google.com", name: "Google Docs", icon: "Google_Docs" },
-        { url: "https://sheets.google.com", name: "Google Sheets", icon: "Google_Sheets" },
-        { url: "https://slides.google.com", name: "Google Slides", icon: "Google_Slides" },
-        { url: "https://quaternions.online/", name: "Quaternions Online", icon: "Quaternions_Online" },
-        { url: "https://matrixcalc.org/en/", name: "Matrix Calculator", icon: "Matrix_Calculator" },
-        { url: "https://www.andre-gaschler.com/rotationconverter/", name: "Rotation Converter", icon: "Rotation_Converter" },
-        { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "Desmos_Calculator" },
-        { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "Wolfram_MathWorld" },
-        { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "LaTeX_Symbols" },
-        { url: "https://katex.org/docs/supported.html", name: "KaTeX Supported", icon: "KaTeX_Supported" },
-        { url: "http://exploringdata.github.io/vis/programming-languages-influence-network/", name: "Programming Languages Influence Network", icon: "Programming_Languages_Influence_Network" },
-        { url: "https://simplemde.com/", name: "SimpleMDE", icon: "SimpleMDE" },
-        { url: "https://wjakob.github.io/nori/", name: "Nori Renderer", icon: "Nori_Renderer" },
-        { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter", icon: "JSON_Formatter" },
-        { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", icon: "Lil_GUI_Basic_Example" },
-        { url: "https://www.gamedeveloper.com/", name: "Game Developer", icon: "Game_Developer" },
-        { url: "https://cowboyprogramming.com/", name: "Cowboy Programming", icon: "Cowboy_Programming" },
-        { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "😊Method of Separating Axes", icon: "Method_of_Separating_Axes" },
-        { url: "https://badgen.net/", name: "Badgen", icon: "https://badgen.net/statics/favicon.png" },
-        { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "Tables_Generator" }
+        { url: "https://v.qq.com", name: "腾讯视频", icon: "icon-tencent-video" },
+        { url: "https://www.iqiyi.com", name: "爱奇艺", icon: "icon-iqiyi" },
+        { url: "https://www.youku.com", name: "优酷", icon: "icon-youku" },
+        { url: "https://www.bilibili.com", name: "Bilibili", icon: "icon-bilibili" },
+        { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
+        { url: "https://www.youtube.com", name: "YouTube", icon: "icon-youtube" },
+        { url: "https://music.youtube.com", name: "YouTube Music", icon: "icon-youtube-music" },
+
+        { url: "https://www.taobao.com", name: "淘宝", icon: "icon-taobao" },
+        { url: "https://www.tmall.com", name: "天猫", icon: "icon-tmall" },
+        { url: "https://www.jd.com", name: "京东", icon: "icon-jd" },
+        { url: "https://www.amazon.com", name: "Amazon", icon: "icon-amazon" },
+        { url: "https://www.ebay.com", name: "eBay", icon: "icon-ebay" },
+        { url: "https://www.apple.com", name: "Apple", icon: "icon-apple" },
+
+        { url: "https://stackoverflow.blog", name: "Stack Overflow Blog", icon: "icon-stack-overflow" },
+        { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "icon-stack-overflow" },
+        { url: "https://stackexchange.com", name: "Stack Exchange", icon: "icon-stack-exchange" },
+        { url: "https://www.reddit.com", name: "Reddit", icon: "icon-reddit" },
+
+        { url: "https://www.google.com", name: "Google", icon: "icon-google-chrome" },
+        { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
+        { url: "https://news.google.com", name: "Google News", icon: "icon-google-news" },
+        { url: "https://drive.google.com", name: "Google Drive", icon: "icon-google-drive" },
+        { url: "https://mail.google.com", name: "Gmail", icon: "icon-google-mail" },
+        { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
+        { url: "https://docs.google.com", name: "Google Docs", icon: "icon-google-docs" },
+        { url: "https://sheets.google.com", name: "Google Sheets", icon: "icon-google-sheets" },
+        { url: "https://slides.google.com", name: "Google Slides", icon: "icon-google-slides" },
+        { url: "https://translate.google.com", name: "Google Translate", icon: "icon-google-translate" },
+        { url: "https://gemini.google.com/", name: "Gemini", icon: "icon-google-gemini" },
+        { url: "https://chat.openai.com/", name: "ChatGPT", icon: "icon-chatgpt" },
+
+        { url: "https://github.com", name: "GitHub", icon: "icon-github" },
+        { url: "https://gitlab.com", name: "GitLab", icon: "icon-gitlab" },
+        { url: "https://bitbucket.org", name: "Bitbucket", icon: "icon-bitbucket" },
+
+        { url: "https://www.facebook.com", name: "Facebook", icon: "icon-facebook" },
+        { url: "https://www.linkedin.com", name: "LinkedIn", icon: "icon-linkedin" },
+        { url: "https://www.zhihu.com", name: "知乎", icon: "icon-zhihu" },
+        { url: "https://www.douban.com", name: "豆瓣", icon: "icon-douban" },
+        { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-X" },
+        { url: "https://www.instagram.com/jerrychaos/", name: "Instagram Jerry Chaos", icon: "icon-instagram" },
+        { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
+
+
+
+        { url: "https://www.icloud.com", name: "iCloud", icon: "icon-apple-cloud" },
+        { url: "https://www.dropbox.com", name: "Dropbox", icon: "icon-dropbox" },
+        { url: "https://www.wanyiwan.top/home", name: "支付宝小游戏", icon: "icon-alipay" },
+        { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion AUT Student Home", icon: "icon-AUT" },
+        { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "AUT Computer Science Course", icon: "icon-AUT" },
+        { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "AUT Community Force Fund Details", icon: "icon-AUT" },
+        { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge Auckland Mayoral Drive" },
+        { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
+        { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services" },
+        { url: "https://salttiger.com/", name: "Salt Tiger" },
+        { url: "https://www.wolframalpha.com", name: "Wolfram Alpha", icon: "icon-wolfram-alpha" },
+        { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "icon-wolfram-alpha" },
+        { url: "https://www.python.org", name: "Python", icon: "icon-python" },
+        { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
+        { url: "https://quaternions.online/", name: "Quaternions Online" },
+        { url: "https://matrixcalc.org/en/", name: "Matrix Calculator", icon: "icon-matrix-calculator" },
+        { url: "https://www.andre-gaschler.com/rotationconverter/", name: "Rotation Converter", icon: "icon-rotationconverter" },
+        { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos" },
+        { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-latex" },
+        { url: "https://katex.org/docs/supported.html", name: "KaTeX Supported", icon: "icon-katex" },
+
+        { url: "http://exploringdata.github.io/vis/programming-languages-influence-network/", name: "Programming Languages Influence Network" },
+        { url: "https://exploring-data.com/", name: "Exploring Data" },
+
+        { url: "https://simplemde.com/", name: "SimpleMDE" },
+        { url: "https://wjakob.github.io/nori/", name: "Nori Renderer" },
+        { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
+        { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", },
+        { url: "https://www.gamedeveloper.com/", name: "Game Developer", },
+        { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
+        { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "😊Method of Separating Axes" },
+        { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
+        { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator" }
     ];
+
+    const _defaultIcon = "icon-redstar";
     const mainDiv = document.getElementById("mainDiv");
     for (const item of _list) {
         mainDiv.innerHTML += `<div class="flex items-center space-x-2">
-                <i class="sprite ${item.icon}"/></i>
-                <a href="${item.url}" target="_blank" class="text-blue-600 hover:text-red-600 hover:underline transition-all">${item.name}</a>
-            </div>`;
+    <svg class="icon">
+        <use href="./assets/icons.svg#${item.icon ?? _defaultIcon}" xlink:href="./assets/icons.svg#${item.icon ?? _defaultIcon}">
+        </use>
+    </svg>
+    <a href="${item.url}" target="_blank" class="text-blue-600 hover:text-red-600 hover:underline transition-all">${item.name}</a>
+</div>`;
     }
 </script>
 
