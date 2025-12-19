@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en_US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="author" content="Jerry Chaos" />
+    <meta name="applicable-device" content="pc,pad,mobile" />
+    <meta name="referrer" content="always" />
+    <title>Jerry Chaos</title>
+    <link href="./favicon.ico" rel="shortcut icon">
+    <style>
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* 隐藏原生复选框 */
+        .custom-checkbox input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body style="margin: 0;">
+    <main id="mainDivContainer" style="margin: 20px 20px; display: flex; flex-direction: row; gap: 20px;">
+        <div id="mainDiv" style="width:auto;"> </div>
+        <textarea id="outputDiv" style="width: 50%;"></textarea>
+    </main>
+</body>
+
+<script>
+    console.log("Hello Jerry!");
+
+    const _data = {
+        "MiKTeX": { caption: "MiKTeX", wingetId: "MiKTeX.MiKTeX", dependency: ["7zip"] },
+        "TeXstudio": { caption: "TeXstudio", wingetId: "TeXstudio.TeXstudio", dependency: ["MiKTeX"] },
+        "Git": { caption: "Git", wingetId: "Git.Git" },
+        "VSCode": { caption: "VSCode", wingetId: "Microsoft.VisualStudioCode" },
+        "Node.js": { caption: "Node.js", wingetId: "OpenJS.NodeJS" },
+        "Python": { caption: "Python", wingetId: "Python.Python.3.14" },
+        "Anaconda": { caption: "Anaconda", wingetId: "Anaconda.Anaconda", dependency: ["Python"] },
+        "Neovim": { caption: "Neovim", wingetId: "Neovim.Neovim" },
+        "WindowsTerminal": { caption: "WindowsTerminal", wingetId: "Microsoft.WindowsTerminal" },
+        "PowerShell": { caption: "PowerShell", wingetId: "Microsoft.PowerShell" },
+        "7zip": { caption: "7zip", wingetId: "7zip.7zip" },
+        "Notepad++": { caption: "Notepad++", wingetId: "Notepad++.Notepad++" },
+        "VLC": { caption: "VLC", wingetId: "VideoLAN.VLC" },
+        "ShareX": { caption: "ShareX", wingetId: "ShareX.ShareX" },
+        "OBS Studio": { caption: "OBS Studio", wingetId: "OBSProject.OBSStudio" },
+        "fd": { caption: "fd", wingetId: "sharkdp.fd" },
+        "ripgrep": { caption: "ripgrep", wingetId: "BurntSushi.ripgrep.MSVC" },
+        "Everything": { caption: "Everything", wingetId: "Everything.Everything" },
+        "SumatraPDF": { caption: "SumatraPDF", wingetId: "SumatraPDF.SumatraPDF" },
+    };
+
+
+    function createCB(id, caption) {
+        return `<label class="custom-checkbox">
+    <input type="checkbox" name="${id}">
+    ${caption}
+</label>`;
+    }
+    let _renderContent = '';
+    for (const [key, value] of Object.entries(_data)) {
+        _renderContent += createCB(key, value.caption);
+    }
+    const mainDivContainer = document.getElementById("mainDivContainer");
+    const mainDiv = document.getElementById("mainDiv");
+    mainDiv.remove();
+    mainDiv.innerHTML = _renderContent;
+    mainDivContainer.prepend(mainDiv);
+    mainDiv.addEventListener('change', (event) => {
+        const target = event.target;
+        if (target.name in _data) {
+            const isChecked = target.checked;
+            const dependencies = _data[target.name].dependency || [];
+            dependencies.forEach((dep) => {
+                const depCheckbox = document.querySelector(`input[name="${dep}"]`);
+                if (depCheckbox) {
+                    depCheckbox.checked = isChecked;
+                    depCheckbox.disabled = isChecked;
+                }
+            });
+            refreshOutput();
+        }
+    });
+
+    function updateDependencies(id) {
+        const depCheckbox = document.querySelector(`input[name="${id}"]`);
+        if (depCheckbox) {
+            const isChecked = depCheckbox.checked;
+            const dependencies = _data[id].dependency;
+            if (dependencies) {
+                dependencies.forEach((dep) => {
+                    const childDepCheckbox = document.querySelector(`input[name="${dep}"]`);
+                    if (childDepCheckbox) {
+                        childDepCheckbox.checked = isChecked;
+                        childDepCheckbox.disabled = isChecked;
+                    }
+                });
+            }
+        }
+
+
+
+
+        const checkboxes = mainDiv.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            const appData = _data[checkbox.name];
+            if (appData && appData.dependency) {
+                const dependencies = appData.dependency;
+                dependencies.forEach((dep) => {
+                    const depCheckbox = document.querySelector(`input[name="${dep}"]`);
+                    if (depCheckbox && depCheckbox.checked) {
+                        checkbox.disabled = true;
+                        checkbox.checked = true;
+                    }
+                });
+            }
+        });
+    }
+
+    function refreshOutput() {
+        let wingetCommands = [];
+        const checkboxes = mainDiv.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                const appData = _data[checkbox.name];
+                if (appData && appData.wingetId) {
+                    wingetCommands.push(`winget install --id ${appData.wingetId}`);
+                }
+            }
+        });
+        outputDiv.value = wingetCommands.join('\n');
+    }
+
+    const outputDiv = document.getElementById("outputDiv");
+
+</script>
+
+</html>
