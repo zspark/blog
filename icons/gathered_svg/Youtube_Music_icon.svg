@@ -1,16 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 176 176" enable-background="new 0 0 176 176" xml:space="preserve">
-<metadata>
-	<sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
-		<slices/>
-		<sliceSourceBounds bottomLeftOrigin="true" height="176" width="176" x="8" y="-184"/>
-	</sfw>
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 184 184"
+   enable-background="new 0 0 176 176"
+   xml:space="preserve"
+   sodipodi:docname="Youtube_Music_icon.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   width="184"
+   height="184"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:ns="http://ns.adobe.com/SaveForWeb/1.0/"><defs
+   id="defs1" /><sodipodi:namedview
+   id="namedview1"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="5.1534091"
+   inkscape:cx="44.533627"
+   inkscape:cy="67.528115"
+   inkscape:window-width="3840"
+   inkscape:window-height="2053"
+   inkscape:window-x="-11"
+   inkscape:window-y="-11"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<metadata
+   id="metadata1">
+	<ns:sfw>
+		<ns:slices />
+		<ns:sliceSourceBounds
+   bottomLeftOrigin="true"
+   height="176"
+   width="176"
+   x="8"
+   y="-184" />
+	</ns:sfw>
 </metadata>
-<g id="XMLID_167_">
-	<circle id="XMLID_791_" fill="#FF0000" cx="88" cy="88" r="88"/>
-	<path id="XMLID_42_" fill="#FFFFFF" d="M88,46c23.1,0,42,18.8,42,42s-18.8,42-42,42s-42-18.8-42-42S64.9,46,88,46 M88,42   c-25.4,0-46,20.6-46,46s20.6,46,46,46s46-20.6,46-46S113.4,42,88,42L88,42z"/>
-	<polygon id="XMLID_274_" fill="#FFFFFF" points="72,111 111,87 72,65  "/>
-</g>
+<circle
+   id="XMLID_791_"
+   fill="#ff0000"
+   cx="92"
+   cy="92"
+   r="88" /><path
+   id="XMLID_42_"
+   fill="#ffffff"
+   d="m 92,50 c 23.1,0 42,18.8 42,42 0,23.2 -18.8,42 -42,42 C 68.8,134 50,115.2 50,92 50,68.8 68.9,50 92,50 m 0,-4 c -25.4,0 -46,20.6 -46,46 0,25.4 20.6,46 46,46 25.4,0 46,-20.6 46,-46 0,-25.4 -20.6,-46 -46,-46 z" /><polygon
+   id="XMLID_274_"
+   fill="#ffffff"
+   points="72,65 72,111 111,87 "
+   transform="translate(4,4)" />
 </svg>

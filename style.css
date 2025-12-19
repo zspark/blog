@@ -11,11 +11,13 @@
      --shortcut-hover-bg: rgba(255, 255, 255, 0.2);
      --text-color: #fbfbfc;
      --icon-bg: #2b2a33;
+     --shortcut-item-width: 80px;
  }
 
  .shortcut-container {
-     display: flex;
-     gap: 16px;
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(var(--shortcut-item-width), var(--shortcut-item-width)));
+     gap: 4px;
      padding: 20px;
      background-color: #32303d;
      margin-bottom: 20px;
@@ -26,8 +28,8 @@
      flex-direction: column;
      align-items: center;
      text-decoration: none;
-     width: 96px;
-     padding: 12px 4px;
+     width: var(--shortcut-item-width);
+     padding: 12px 0;
      border-radius: 8px;
      transition: background-color 0.15s ease;
  }
@@ -41,9 +43,6 @@
      height: 48px;
      background-color: var(--icon-bg);
      border-radius: 8px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
      margin-bottom: 8px;
      /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); */
      position: relative;
