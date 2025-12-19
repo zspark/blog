@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en_US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="author" content="Jerry Chaos" />
+    <meta name="applicable-device" content="pc,pad,mobile" />
+    <meta name="referrer" content="always" />
+    <title>Jerry Chaos</title>
+    <link href="./favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="button-group">
+            <button subtype="1" onclick="copyToClipboard('gitconfig')">
+                <div style="display: flex; align-items: center;">
+                    <svg class="icon">
+                        <use href="./assets/icons.svg#icon-copy" xlink:href="./assets/icons.svg#icon-copy">
+                        </use>
+                    </svg>
+                    <span>Git Config</span>
+                </div>
+            </button>
+
+            <button subtype="1" onclick="copyToClipboard('powershell_profile')">
+                <div style="display: flex; align-items: center;">
+                    <svg class="icon">
+                        <use href="./assets/icons.svg#icon-copy" xlink:href="./assets/icons.svg#icon-copy">
+                        </use>
+                    </svg>
+                    <span>PowerShell profile</span>
+                </div>
+            </button>
+
+            <button subtype="2" onclick="downloadText('gitconfig', 'gitconfig')">
+                <div style="display: flex; align-items: center;">
+                    <svg class="icon">
+                        <use href="./assets/icons.svg#icon-download" xlink:href="./assets/icons.svg#icon-download">
+                        </use>
+                    </svg>
+                    <span>Git Config</span>
+                </div>
+            </button>
+
+            <button subtype="2" onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.ps1')">
+                <div style="display: flex; align-items: center;">
+                    <svg class="icon">
+                        <use href="./assets/icons.svg#icon-download" xlink:href="./assets/icons.svg#icon-download">
+                        </use>
+                    </svg>
+                    <span>PowerShell profile</span>
+                </div>
+            </button>
+        </div>
+        
+        <div>
+            <textarea id="gitconfig" class="textarea" oninput="autoResize(this)"># change file name to .gitconfig and put it in your home directory
+
+[user]
+    name = JerryChaos
+    email = jerry-chaos@outlook.com
+[alias]
+    st=status -sb
+    ci=commit
+    cia=commit --amend
+    co=checkout
+    ss=show --stat
+    ft=fetch
+    br=branch
+    df=diff
+    dfc=diff --cached
+    dft=difftool
+    rh=reset --hard
+    cp=cherry-pick
+    ai=add -i
+    au=add -u
+    aA=add -A
+    sb=show-branch
+    sw=switch
+    rb=rebase
+    lg=log --decorate --graph -10 --oneline
+    lgs=log --decorate --graph -10 --oneline --stat
+    lgp=log --decorate --graph -10 --oneline -p
+    lga=log --decorate --graph -10 --oneline --all
+    lgas=log --decorate --graph -10 --oneline --all --stat
+    lgsa=log --decorate --graph -10 --oneline --all --stat
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+</textarea>
+            <textarea id="powershell_profile" class="textarea" oninput="autoResize(this)"># copy this file to $HOME\Documents\PowerShell\
+
+# global hot-key
+function custom_function{
+    echo ============================================================
+    echo "Custom Function Triggered!"
+    echo ============================================================
+}
+
+# Set-Alias customCall custom_function
+Set-Alias vim nvim
+Set-Alias vi nvim
+Set-Alias v nvim
+
+Set-PSReadLineKeyHandler -Key "Ctrl+p" -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
+
+# Import-Module posh-git
+# oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\zash.omp.json" | Invoke-Expression
+</textarea>
+        </div>
+    </main>
+</body>
+
+<script>
+    console.log("Hello Jerry!");
+    function copyToClipboard(elementId) {
+        var copyText = document.getElementById(elementId);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
+    }
+
+    function downloadText(elementId, fileName) {
+        const content = document.getElementById(elementId).value;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+
+        window.URL.revokeObjectURL(url);
+    }
+
+    function autoResize(textarea) {
+        // 重置高度，防止只增不减
+        textarea.style.height = 'auto';
+        // 设置为滚动高度
+        textarea.style.height = textarea.scrollHeight + 10 + 'px';
+    }
+
+    // 页面加载完成后初始化一次（防止初始有内容时高度不对）
+    window.onload = () => {
+        const el = document.getElementById('gitconfig');
+        if (el) autoResize(el);
+        const el2 = document.getElementById('powershell_profile');
+        if (el2) autoResize(el2);
+    };
+</script>
+
+</html>

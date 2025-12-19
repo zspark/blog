@@ -10,67 +10,97 @@
     <meta name="referrer" content="always" />
     <title>Jerry Chaos</title>
     <link href="./favicon.ico" rel="shortcut icon">
-    <style>
-        .custom-checkbox {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* 隐藏原生复选框 */
-        .custom-checkbox input {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="margin: 0;">
-    <main id="mainDivContainer" style="margin: 20px 20px; display: flex; flex-direction: row; gap: 20px;">
-        <div id="mainDiv" style="width:auto;"> </div>
-        <textarea id="outputDiv" style="width: 50%;"></textarea>
+<body>
+    <main>
+        <div class="button-group">
+            <button subtype="1" onclick="copyToClipboard('outputDiv')">
+                <div style="display: flex; align-items: center;">
+                    <svg class="icon">
+                        <use href="./assets/icons.svg#icon-copy" xlink:href="./assets/icons.svg#icon-copy">
+                        </use>
+                    </svg>
+                    <span>Copy</span>
+                </div>
+            </button>
+        </div>
+
+        <div id="mainDivContainer" style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
+            <div id="mainDiv" style="width:auto;"> </div>
+            <textarea class="textarea" id="outputDiv"></textarea>
+        </div>
+
+        <div>
+            <ul>
+                <li><b>Neovim</b> plugin repository (private):
+                    <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon">
+                            <use href="./assets/icons.svg#icon-external-link-1"
+                                xlink:href="./assets/icons.svg#icon-external-link-1">
+                            </use>
+                        </svg></a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
+                </li>
+                <li><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please install cpp compiler
+                    first:
+                    <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon">
+                            <use href="./assets/icons.svg#icon-external-link-1"
+                                xlink:href="./assets/icons.svg#icon-external-link-1">
+                            </use>
+                        </svg></a>
+                </li>
+            </ul>
+        </div>
     </main>
+
 </body>
 
 <script>
     console.log("Hello Jerry!");
 
     const _data = {
-        "MiKTeX": { caption: "MiKTeX", wingetId: "MiKTeX.MiKTeX", dependency: ["7zip"] },
-        "TeXstudio": { caption: "TeXstudio", wingetId: "TeXstudio.TeXstudio", dependency: ["MiKTeX"] },
-        "Git": { caption: "Git", wingetId: "Git.Git" },
-        "VSCode": { caption: "VSCode", wingetId: "Microsoft.VisualStudioCode" },
-        "Node.js": { caption: "Node.js", wingetId: "OpenJS.NodeJS" },
-        "Python": { caption: "Python", wingetId: "Python.Python.3.14" },
-        "Anaconda": { caption: "Anaconda", wingetId: "Anaconda.Anaconda", dependency: ["Python"] },
-        "Neovim": { caption: "Neovim", wingetId: "Neovim.Neovim" },
         "WindowsTerminal": { caption: "WindowsTerminal", wingetId: "Microsoft.WindowsTerminal" },
-        "PowerShell": { caption: "PowerShell", wingetId: "Microsoft.PowerShell" },
+        "PowerShell": { caption: "PowerShell", wingetId: "Microsoft.PowerShell", large: true, checked: true },
+        "fd": { caption: "fd", wingetId: "sharkdp.fd", large: true, checked: true },
+        "ripgrep": { caption: "ripgrep", wingetId: "BurntSushi.ripgrep.MSVC", large: true, checked: true },
         "7zip": { caption: "7zip", wingetId: "7zip.7zip" },
-        "Notepad++": { caption: "Notepad++", wingetId: "Notepad++.Notepad++" },
-        "VLC": { caption: "VLC", wingetId: "VideoLAN.VLC" },
+        "Git": { caption: "Git", wingetId: "Git.Git", large: true },
+        "Node.js": { caption: "Node.js", wingetId: "OpenJS.NodeJS", large: true, },
+        "StrawberryPerl": { caption: "StrawberryPerl", wingetId: "StrawberryPerl.StrawberryPerl" },
+        "Python": { caption: "Python", wingetId: "Python.Python.3.14" },
+        "Anaconda": { caption: "Anaconda", wingetId: "Anaconda.Anaconda", },
         "ShareX": { caption: "ShareX", wingetId: "ShareX.ShareX" },
-        "OBS Studio": { caption: "OBS Studio", wingetId: "OBSProject.OBSStudio" },
-        "fd": { caption: "fd", wingetId: "sharkdp.fd" },
-        "ripgrep": { caption: "ripgrep", wingetId: "BurntSushi.ripgrep.MSVC" },
-        "Everything": { caption: "Everything", wingetId: "Everything.Everything" },
-        "SumatraPDF": { caption: "SumatraPDF", wingetId: "SumatraPDF.SumatraPDF" },
+        "Ninja": { caption: "Ninja", wingetId: "Ninja-build.Ninja" },
+        "CMake": { caption: "CMake", wingetId: "Kitware.CMake" },
+        "LazyGit": { caption: "LazyGit", wingetId: "JesseDuffield.lazygit" },
+        "OBS Studio": { caption: "OBS Studio", wingetId: "OBSProject.OBSStudio", large: true, },
+        "Everything": { caption: "Everything", wingetId: "voidtools.Everything" },
+        "SumatraPDF": { caption: "SumatraPDF", wingetId: "SumatraPDF.SumatraPDF", large: true },
+        "OhMyPosh": { caption: "OhMyPosh", wingetId: "JanDeDobbeleer.OhMyPosh" },
+        "Notepad++": { caption: "Notepad++", wingetId: "Notepad++.Notepad++" },
+        "VLC": { caption: "VLC", wingetId: "VideoLAN.VLC", large: true, checked: true },
+        "GitHubDesktop": { caption: "GitHub Desktop", wingetId: "GitHub.GitHubDesktop", large: true },
+        "VSCode": { caption: "VSCode", wingetId: "Microsoft.VisualStudioCode" },
+        "Neovim": { caption: "Neovim", wingetId: "Neovim.Neovim" },
+        "MiKTeX": { caption: "MiKTeX", wingetId: "MiKTeX.MiKTeX", large: true, checked: true },
+        "TeXstudio": { caption: "TeXstudio", wingetId: "TeXstudio.TeXstudio", large: true, checked: true },
     };
 
+    const outputDiv = document.getElementById("outputDiv");
+    outputDiv.value = '';
 
-    function createCB(id, caption) {
+    function createCB(id, data) {
+        const isLarge = data.large ?? false;
         return `<label class="custom-checkbox">
-    <input type="checkbox" name="${id}">
-    ${caption}
+    <input type="checkbox" name="${id}" ${data.checked ? 'checked' : ''}/>
+    <div class="${isLarge ? 'text text-large' : 'text'}"> ${data.caption} </div>
 </label>`;
     }
     let _renderContent = '';
     for (const [key, value] of Object.entries(_data)) {
-        _renderContent += createCB(key, value.caption);
+        _renderContent += createCB(key, value);
     }
+
     const mainDivContainer = document.getElementById("mainDivContainer");
     const mainDiv = document.getElementById("mainDiv");
     mainDiv.remove();
@@ -79,53 +109,9 @@
     mainDiv.addEventListener('change', (event) => {
         const target = event.target;
         if (target.name in _data) {
-            const isChecked = target.checked;
-            const dependencies = _data[target.name].dependency || [];
-            dependencies.forEach((dep) => {
-                const depCheckbox = document.querySelector(`input[name="${dep}"]`);
-                if (depCheckbox) {
-                    depCheckbox.checked = isChecked;
-                    depCheckbox.disabled = isChecked;
-                }
-            });
             refreshOutput();
         }
     });
-
-    function updateDependencies(id) {
-        const depCheckbox = document.querySelector(`input[name="${id}"]`);
-        if (depCheckbox) {
-            const isChecked = depCheckbox.checked;
-            const dependencies = _data[id].dependency;
-            if (dependencies) {
-                dependencies.forEach((dep) => {
-                    const childDepCheckbox = document.querySelector(`input[name="${dep}"]`);
-                    if (childDepCheckbox) {
-                        childDepCheckbox.checked = isChecked;
-                        childDepCheckbox.disabled = isChecked;
-                    }
-                });
-            }
-        }
-
-
-
-
-        const checkboxes = mainDiv.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach((checkbox) => {
-            const appData = _data[checkbox.name];
-            if (appData && appData.dependency) {
-                const dependencies = appData.dependency;
-                dependencies.forEach((dep) => {
-                    const depCheckbox = document.querySelector(`input[name="${dep}"]`);
-                    if (depCheckbox && depCheckbox.checked) {
-                        checkbox.disabled = true;
-                        checkbox.checked = true;
-                    }
-                });
-            }
-        });
-    }
 
     function refreshOutput() {
         let wingetCommands = [];
@@ -141,7 +127,15 @@
         outputDiv.value = wingetCommands.join('\n');
     }
 
-    const outputDiv = document.getElementById("outputDiv");
+    refreshOutput();
+
+    function copyToClipboard(elementId) {
+        var copyText = document.getElementById(elementId);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
+    }
 
 </script>
 
