@@ -51,6 +51,7 @@
         { url: "https://www.youku.com", name: "Youku", icon: "icon-youku" },
         { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
         { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
+        { url: "https://www.twitch.tv/", name: "Twitch", icon: "icon-twitch", large: true },
     ];
 
     const _shoppingList = [
@@ -128,6 +129,10 @@
         { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "Method of Separating Axes", icon: "icon-pdf" },
         { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
         { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
+        { url: "https://emojipedia.org/", name: "Emojipedia", icon: "icon-heart" },
+        { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
+        { url: "https://fontawesome.com/", name: "Font Awesome", icon: "icon-font-awesome" },
+        { url: "https://github.com/zspark/Microsoft-Segoe-UI-Emoji-SVG-Icons", name: "Segoe UI Emoji SVG Icons", icon: "icon-heart" },
     ];
 
     const _blogList = [
@@ -149,6 +154,7 @@
         { url: "https://www.kongregate.com/", name: "Kongregate", icon: "icon-kongregate" },
         { url: "https://littlealchemy2.com/", name: "Little Alchemy 2", icon: "icon-little-alchemy-2" },
         { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
+        { url: "https://www.thewayoftheninja.org/", name: "The Way of the Ninja" }
     ];
 
 
@@ -158,8 +164,8 @@
         return `<a href="${item.url}" class="shortcut-item" target="_blank">
     <div class="icon-wrapper">
 ${_hasIcon ? `<svg>
-            <use href="./assets/icons.svg#${item.icon}"
-                xlink:href="./assets/icons.svg#${item.icon}">
+            <use href="./icons.svg#${item.icon}"
+                xlink:href="./icons.svg#${item.icon}">
             </use>
         </svg>`: `<span class="icon-placeholder">${_firstChar}</span>`} 
     </div>
@@ -180,7 +186,7 @@ ${_hasIcon ? `<svg>
     function createItem(item) {
         return `<div class="item-container">
     <svg class="${item.large ? "icon icon-large" : "icon"}">
-        <use href="./assets/icons.svg#${item.icon ?? _DEFAULT_ICON_}" xlink:href="./assets/icons.svg#${item.icon ?? _DEFAULT_ICON_}">
+        <use href="./icons.svg#${item.icon ?? _DEFAULT_ICON_}" xlink:href="./icons.svg#${item.icon ?? _DEFAULT_ICON_}">
         </use>
     </svg>
     <a href="${item.url}" target="_blank">${item.name}</a>

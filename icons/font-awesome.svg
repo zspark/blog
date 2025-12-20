@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="320"
+   height="320"
+   viewBox="0 0 320 320"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="font-awesome.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.5429688"
+     inkscape:cx="152.27343"
+     inkscape:cy="160.03528"
+     inkscape:window-width="3840"
+     inkscape:window-height="2053"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="M 57.828,60 C 66.945,54.243 73,44.079 73,32.5 73,14.551 58.449,0 40.5,0 22.551,0 8,14.551 8,32.5 8,42.907 12.891,52.171 20.5,58.119 V 60 280 320 h 40 v -40 h 233.501 c 9.112,0 16.499,-7.387 16.499,-16.499 0,-2.308 -0.484,-4.591 -1.422,-6.701 L 270.5,170 309.078,83.199 c 0.938,-2.109 1.422,-4.392 1.422,-6.7 C 310.5,67.387 303.113,60 294.001,60 Z"
+     fill="#418fde"
+     id="path1" />
+</svg>
