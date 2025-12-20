@@ -14,6 +14,7 @@
 </head>
 
 <!-- <body style="background-image: url('./bg.jpg'); background-repeat: repeat; background-size: cover; background-attachment: fixed;"> -->
+
 <body>
     <main id="mainDivContainer">
         <div id="shortcutDiv" class="shortcut-container">
@@ -45,119 +46,113 @@
         { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
     ];
 
-    const _videoList = [
-        { url: "https://www.bilibili.com", name: "Bilibili", icon: "icon-bilibili", large: true },
-        { url: "https://v.qq.com", name: "Tencent Video", icon: "icon-tencent-video", large: true },
-        { url: "https://www.iqiyi.com", name: "Iqiyi", icon: "icon-iqiyi" },
-        { url: "https://www.youku.com", name: "Youku", icon: "icon-youku" },
-        { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
-        { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
-        { url: "https://www.twitch.tv/", name: "Twitch", icon: "icon-twitch", large: true },
-    ];
-
-    const _shoppingList = [
-        { url: "https://www.taobao.com", name: "Taobao", icon: "icon-taobao" },
-        { url: "https://www.tmall.com", name: "Tmall", icon: "icon-tmall" },
-        { url: "https://www.jd.com", name: "JD", icon: "icon-jd" },
-        { url: "https://www.amazon.com", name: "Amazon", icon: "icon-amazon" },
-        { url: "https://www.ebay.com", name: "eBay", icon: "icon-ebay" },
-        { url: "https://www.apple.com", name: "Apple", icon: "icon-apple" },
-        { url: "https://www.trademe.co.nz/", name: "Trade Me", icon: "icon-trademe" },
-        { url: "https://www.routledge.com/", name: "Routledge" },
-    ];
-
-    const _devList = [
-        { url: "./softwares.html", name: "Software Installments", icon: "icon-setup" },
-        { url: "./configurations.html", name: "Configurations", icon: "icon-settings" },
-        { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "icon-stack-overflow" },
-        { url: "https://stackexchange.com", name: "Stack Exchange", icon: "icon-stack-exchange" },
-        { url: "https://gitlab.com", name: "GitLab", icon: "icon-gitlab" },
-        { url: "https://bitbucket.org", name: "Bitbucket", icon: "icon-bitbucket" },
-        { url: "https://www.dropbox.com", name: "Dropbox", icon: "icon-dropbox" },
-        { url: "https://www.google.com", name: "Google Chrome", icon: "icon-google-chrome" },
-        { url: "https://slides.google.com", name: "Google Slides", icon: "icon-google-slides" },
-        { url: "https://www.python.org", name: "Python", icon: "icon-python" },
-        { url: "https://nehe.gamedev.net/", name: "NeHe OpenGL Tutorials" },
-        { url: "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md", name: "glTF Model Assets", icon: "icon-gltf" }
-    ];
-
-    const _socialList = [
-        { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-twitter", large: true },
-        { url: "https://www.instagram.com/", name: "Instagram", icon: "icon-instagram-flat" },
-        { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
-        { url: "https://www.facebook.com", name: "Facebook", icon: "icon-facebook-2013" },
-        { url: "https://www.linkedin.com", name: "LinkedIn", icon: "icon-linkedin" },
-        { url: "https://www.zhihu.com", name: "Zhihu", icon: "icon-zhihu" },
-        { url: "https://www.discord.com", name: "Discord", icon: "icon-discord", large: true },
-        { url: "https://www.reddit.com", name: "Reddit", icon: "icon-reddit" },
-        { url: "https://www.tiktok.com/", name: "TikTok", icon: "icon-tiktok-2" },
-        { url: "https://news.google.com", name: "Google News", icon: "icon-google-news" },
-    ];
-
-    const _educationList = [
-        { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion Student Home", icon: "icon-AUT-new", large: true },
-        { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "Scholarship", icon: "icon-AUT-new", large: true },
-        { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "MCIS", icon: "icon-AUT-new" },
-        { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
-        { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
-        { url: "https://salttiger.com/", name: "Salt Tiger" },
-        { url: "https://www.wolframalpha.com", name: "Wolfram Alpha", icon: "icon-wolfram-alpha" },
-        { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "icon-wolfram-alpha" },
-        { url: "https://scholar.google.com/", name: "Google Scholar", icon: "icon-google-scholar" }
-    ];
-
-    const _toolsList = [
-        { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos", large: true },
-        { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-pdf", large: true },
-        { url: "https://en.wikibooks.org/wiki/LaTeX", name: "LaTeX Wikibooks", icon: "icon-latex", large: true },
-        { url: "https://latexeditor.lagrida.com/", name: "LaTeX Editor", icon: "icon-latex", large: true },
-        { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator", large: true },
-        { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
-        { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
-        { url: "https://quaternions.online/", name: "Quaternions Online" },
-        { url: "https://matrixcalc.org/en/", name: "Matrix Calculator", icon: "icon-matrix-calculator" },
-        { url: "https://www.andre-gaschler.com/rotationconverter/", name: "Rotation Converter", icon: "icon-rotationconverter" },
-        { url: "https://www.geogebra.org/calculator", name: "GeoGebra", icon: "icon-geogebra" }
-    ];
-    const _miscList = [
-        { url: "https://exploring-data.com/", name: "Exploring Data" },
-        { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services" },
-        { url: "https://simplemde.com/", name: "SimpleMDE" },
-        { url: "https://wjakob.github.io/nori/", name: "Nori Renderer" },
-        { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", },
-        { url: "https://www.gamedeveloper.com/", name: "Game Developer", },
-        { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
-        { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "Method of Separating Axes", icon: "icon-pdf" },
-        { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
-        { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
-        { url: "https://emojipedia.org/", name: "Emojipedia", icon: "icon-heart" },
-        { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
-        { url: "https://fontawesome.com/", name: "Font Awesome", icon: "icon-font-awesome" },
-        { url: "https://github.com/zspark/Microsoft-Segoe-UI-Emoji-SVG-Icons", name: "Segoe UI Emoji SVG Icons", icon: "icon-heart" },
-    ];
-
-    const _blogList = [
-        { url: "./blog.html", name: "Jerry Chaos' Blog", large: true },
-        { url: "https://www.songho.ca/", name: "Song Ho Ahn's Homepage" },
-        { url: "https://blog.lmorchard.com", name: "Lmorchard's Blog" },
-        { url: "https://www.jayconrod.com/posts", name: "Jay Conrod's Blog" },
-        { url: "https://dativ.at/lightprobes/", name: "Light Probes in Computer Graphics" },
-        { url: "http://simon-kallweit.me/", name: "Simon Kallweit's Blog" },
-        { url: "https://bruop.github.io/", name: "Bruop's Blog" },
-        { url: "https://rgl.epfl.ch/", name: "Realistic Graphics Lab" },
-        { url: "https://www.uefap.org/", name: "English for Academic Purposes" },
-        { url: "https://gamadu.com/", name: "Gamadu Games" }
-    ];
-
-    const _gamesList = [
-        { url: "https://www.crazygames.com/", name: "Crazy Games", icon: "icon-crazygames" },
-        { url: "https://armorgames.com/", name: "Armor Games", icon: "icon-armorgames" },
-        { url: "https://www.kongregate.com/", name: "Kongregate", icon: "icon-kongregate" },
-        { url: "https://littlealchemy2.com/", name: "Little Alchemy 2", icon: "icon-little-alchemy-2" },
-        { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
-        { url: "https://www.thewayoftheninja.org/", name: "The Way of the Ninja" }
-    ];
-
+    const _data = {
+        "TOOLS": [
+            { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos", large: true },
+            { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-pdf", large: true },
+            { url: "https://en.wikibooks.org/wiki/LaTeX", name: "LaTeX Wikibooks", icon: "icon-latex", large: true },
+            { url: "https://latexeditor.lagrida.com/", name: "LaTeX Editor", icon: "icon-latex", large: true },
+            { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator", large: true },
+            { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
+            { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
+            { url: "https://quaternions.online/", name: "Quaternions Online" },
+            { url: "https://matrixcalc.org/en/", name: "Matrix Calculator", icon: "icon-matrix-calculator" },
+            { url: "https://www.andre-gaschler.com/rotationconverter/", name: "Rotation Converter", icon: "icon-rotationconverter" },
+            { url: "https://www.geogebra.org/calculator", name: "GeoGebra", icon: "icon-geogebra" }
+        ],
+        "DEVELOP": [
+            { url: "./softwares.html", name: "Software Installments", icon: "icon-setup" },
+            { url: "./configurations.html", name: "Configurations", icon: "icon-settings" },
+            { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "icon-stack-overflow" },
+            { url: "https://stackexchange.com", name: "Stack Exchange", icon: "icon-stack-exchange" },
+            { url: "https://gitlab.com", name: "GitLab", icon: "icon-gitlab" },
+            { url: "https://bitbucket.org", name: "Bitbucket", icon: "icon-bitbucket" },
+            { url: "https://www.dropbox.com", name: "Dropbox", icon: "icon-dropbox" },
+            { url: "https://www.google.com", name: "Google Chrome", icon: "icon-google-chrome" },
+            { url: "https://slides.google.com", name: "Google Slides", icon: "icon-google-slides" },
+            { url: "https://www.python.org", name: "Python", icon: "icon-python" },
+            { url: "https://nehe.gamedev.net/", name: "NeHe OpenGL Tutorials" },
+            { url: "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md", name: "glTF Model Assets", icon: "icon-gltf" }
+        ],
+        "VIDEO & AUDIO": [
+            { url: "https://www.bilibili.com", name: "Bilibili", icon: "icon-bilibili", large: true },
+            { url: "https://v.qq.com", name: "Tencent Video", icon: "icon-tencent-video", large: true },
+            { url: "https://www.iqiyi.com", name: "Iqiyi", icon: "icon-iqiyi" },
+            { url: "https://www.youku.com", name: "Youku", icon: "icon-youku" },
+            { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
+            { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
+            { url: "https://www.twitch.tv/", name: "Twitch", icon: "icon-twitch", large: true },
+        ],
+        "SOCIAL": [
+            { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-twitter", large: true },
+            { url: "https://www.instagram.com/", name: "Instagram", icon: "icon-instagram-flat" },
+            { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
+            { url: "https://www.facebook.com", name: "Facebook", icon: "icon-facebook-2013" },
+            { url: "https://www.linkedin.com", name: "LinkedIn", icon: "icon-linkedin" },
+            { url: "https://www.zhihu.com", name: "Zhihu", icon: "icon-zhihu" },
+            { url: "https://www.discord.com", name: "Discord", icon: "icon-discord", large: true },
+            { url: "https://www.reddit.com", name: "Reddit", icon: "icon-reddit" },
+            { url: "https://www.tiktok.com/", name: "TikTok", icon: "icon-tiktok-2" },
+            { url: "https://news.google.com", name: "Google News", icon: "icon-google-news" },
+        ],
+        "EDUCATION": [
+            { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion Student Home", icon: "icon-AUT-new", large: true },
+            { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "Scholarship", icon: "icon-AUT-new", large: true },
+            { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "MCIS", icon: "icon-AUT-new" },
+            { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
+            { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
+            { url: "https://salttiger.com/", name: "Salt Tiger" },
+            { url: "https://www.wolframalpha.com", name: "Wolfram Alpha", icon: "icon-wolfram-alpha" },
+            { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "icon-wolfram-alpha" },
+            { url: "https://scholar.google.com/", name: "Google Scholar", icon: "icon-google-scholar" }
+        ],
+        "BLOGS": [
+            { url: "./blog.html", name: "Jerry Chaos' Blog", large: true },
+            { url: "https://www.songho.ca/", name: "Song Ho Ahn's Homepage" },
+            { url: "https://blog.lmorchard.com", name: "Lmorchard's Blog" },
+            { url: "https://www.jayconrod.com/posts", name: "Jay Conrod's Blog" },
+            { url: "https://dativ.at/lightprobes/", name: "Light Probes in Computer Graphics" },
+            { url: "http://simon-kallweit.me/", name: "Simon Kallweit's Blog" },
+            { url: "https://bruop.github.io/", name: "Bruop's Blog" },
+            { url: "https://rgl.epfl.ch/", name: "Realistic Graphics Lab" },
+            { url: "https://www.uefap.org/", name: "English for Academic Purposes" },
+            { url: "https://gamadu.com/", name: "Gamadu Games" }
+        ],
+        "GAMES": [
+            { url: "https://www.crazygames.com/", name: "Crazy Games", icon: "icon-crazygames" },
+            { url: "https://armorgames.com/", name: "Armor Games", icon: "icon-armorgames" },
+            { url: "https://www.kongregate.com/", name: "Kongregate", icon: "icon-kongregate" },
+            { url: "https://littlealchemy2.com/", name: "Little Alchemy 2", icon: "icon-little-alchemy-2" },
+            { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
+            { url: "https://www.thewayoftheninja.org/", name: "The Way of the Ninja" }
+        ],
+        "MISC": [
+            { url: "https://exploring-data.com/", name: "Exploring Data" },
+            { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services" },
+            { url: "https://simplemde.com/", name: "SimpleMDE" },
+            { url: "https://wjakob.github.io/nori/", name: "Nori Renderer" },
+            { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", },
+            { url: "https://www.gamedeveloper.com/", name: "Game Developer", },
+            { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
+            { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "Method of Separating Axes", icon: "icon-pdf" },
+            { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
+            { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
+            { url: "https://emojipedia.org/", name: "Emojipedia", icon: "icon-heart" },
+            { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
+            { url: "https://fontawesome.com/", name: "Font Awesome", icon: "icon-font-awesome" },
+            { url: "https://github.com/zspark/Microsoft-Segoe-UI-Emoji-SVG-Icons", name: "Segoe UI Emoji SVG Icons", icon: "icon-heart" },
+        ],
+        "SHOPPING": [
+            { url: "https://www.taobao.com", name: "Taobao", icon: "icon-taobao" },
+            { url: "https://www.tmall.com", name: "Tmall", icon: "icon-tmall" },
+            { url: "https://www.jd.com", name: "JD", icon: "icon-jd" },
+            { url: "https://www.amazon.com", name: "Amazon", icon: "icon-amazon" },
+            { url: "https://www.ebay.com", name: "eBay", icon: "icon-ebay" },
+            { url: "https://www.apple.com", name: "Apple", icon: "icon-apple" },
+            { url: "https://www.trademe.co.nz/", name: "Trade Me", icon: "icon-trademe" },
+            { url: "https://www.routledge.com/", name: "Routledge" },
+        ],
+    };
 
     function createShortcutItem(item) {
         const _hasIcon = item.icon !== undefined;
@@ -206,15 +201,9 @@ ${_hasIcon ? `<svg>
     }
 
     _renderContent = "";
-    _renderContent += createCard("TOOLS", _toolsList);
-    _renderContent += createCard("DEVELOP", _devList);
-    _renderContent += createCard("SOCIAL", _socialList);
-    _renderContent += createCard("EDUCATION", _educationList);
-    _renderContent += createCard("BLOGS", _blogList);
-    _renderContent += createCard("VIDEO & AUDIO", _videoList);
-    _renderContent += createCard("SHOPPING", _shoppingList);
-    _renderContent += createCard("MISC", _miscList);
-    _renderContent += createCard("GAMES", _gamesList);
+    for (const [key, value] of Object.entries(_data)) {
+        _renderContent += createCard(key, value);
+    }
     const mainDiv = document.getElementById("mainDiv");
     mainDiv.remove();
     mainDiv.innerHTML = _renderContent;

@@ -56,9 +56,9 @@
                 </div>
             </button>
         </div>
-        
+
         <div>
-            <textarea id="gitconfig" class="textarea" oninput="autoResize(this)"># change file name to .gitconfig and put it in your home directory
+            <textarea id="gitconfig" spellcheck="false" class="textarea" oninput="autoResize(this)"># change file name to .gitconfig and put it in your home directory
 
 [user]
     name = JerryChaos
@@ -94,7 +94,7 @@
     process = git-lfs filter-process
     required = true
 </textarea>
-            <textarea id="powershell_profile" class="textarea" oninput="autoResize(this)"># copy this file to $HOME\Documents\PowerShell\
+            <textarea id="powershell_profile" spellcheck="false" class="textarea" oninput="autoResize(this)"># copy this file to $HOME\Documents\PowerShell\
 
 # global hot-key
 function custom_function{
@@ -125,7 +125,6 @@ Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
         copyText.select();
         copyText.setSelectionRange(0, 99999); // For mobile devices
         document.execCommand("copy");
-        alert("Copied the text: " + copyText.value);
     }
 
     function downloadText(elementId, fileName) {
@@ -142,13 +141,10 @@ Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
     }
 
     function autoResize(textarea) {
-        // 重置高度，防止只增不减
         textarea.style.height = 'auto';
-        // 设置为滚动高度
         textarea.style.height = textarea.scrollHeight + 10 + 'px';
     }
 
-    // 页面加载完成后初始化一次（防止初始有内容时高度不对）
     window.onload = () => {
         const el = document.getElementById('gitconfig');
         if (el) autoResize(el);
