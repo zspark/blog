@@ -51,7 +51,6 @@
         { url: "https://www.youku.com", name: "Youku", icon: "icon-youku" },
         { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
         { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
-        { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
     ];
 
     const _shoppingList = [
@@ -76,6 +75,8 @@
         { url: "https://www.google.com", name: "Google Chrome", icon: "icon-google-chrome" },
         { url: "https://slides.google.com", name: "Google Slides", icon: "icon-google-slides" },
         { url: "https://www.python.org", name: "Python", icon: "icon-python" },
+        { url: "https://nehe.gamedev.net/", name: "NeHe OpenGL Tutorials" },
+        { url: "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md", name: "glTF Model Assets", icon: "icon-gltf" }
     ];
 
     const _socialList = [
@@ -106,7 +107,8 @@
     const _toolsList = [
         { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos", large: true },
         { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-pdf", large: true },
-        { url: "https://katex.org/docs/supported.html", name: "KaTeX Supported", icon: "icon-katex", large: true },
+        { url: "https://en.wikibooks.org/wiki/LaTeX", name: "LaTeX Wikibooks", icon: "icon-latex", large: true },
+        { url: "https://latexeditor.lagrida.com/", name: "LaTeX Editor", icon: "icon-latex", large: true },
         { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator", large: true },
         { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
         { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
@@ -139,6 +141,14 @@
         { url: "https://rgl.epfl.ch/", name: "Realistic Graphics Lab" },
         { url: "https://www.uefap.org/", name: "English for Academic Purposes" },
         { url: "https://gamadu.com/", name: "Gamadu Games" }
+    ];
+
+    const _gamesList = [
+        { url: "https://www.crazygames.com/", name: "Crazy Games", icon: "icon-crazygames" },
+        { url: "https://armorgames.com/", name: "Armor Games", icon: "icon-armorgames" },
+        { url: "https://www.kongregate.com/", name: "Kongregate", icon: "icon-kongregate" },
+        { url: "https://littlealchemy2.com/", name: "Little Alchemy 2", icon: "icon-little-alchemy-2" },
+        { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
     ];
 
 
@@ -197,6 +207,7 @@ ${_hasIcon ? `<svg>
     _renderContent += createCard("VIDEO & AUDIO", _videoList);
     _renderContent += createCard("SHOPPING", _shoppingList);
     _renderContent += createCard("MISC", _miscList);
+    _renderContent += createCard("GAMES", _gamesList);
     const mainDiv = document.getElementById("mainDiv");
     mainDiv.remove();
     mainDiv.innerHTML = _renderContent;
