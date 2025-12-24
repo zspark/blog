@@ -16,6 +16,15 @@
 <body>
     <main>
         <div class="button-group">
+            <div>
+                <input type="checkbox" id="cb_silent" onchange="silent(true)" checked>
+                <label for="cb_silent">Silent Mode</label>
+            </div>
+            <button subtype="1" onclick="clearAll('a')">
+                <div style="display: flex; align-items: center;">
+                    <span>Clear</span>
+                </div>
+            </button>
             <button subtype="1" onclick="copyToClipboard('outputDiv')">
                 <div style="display: flex; align-items: center;">
                     <svg class="icon">
@@ -82,8 +91,11 @@
         "Neovim": { caption: "Neovim", wingetId: "Neovim.Neovim" },
         "MiKTeX": { caption: "MiKTeX", wingetId: "MiKTeX.MiKTeX", large: true, checked: true },
         "TeXstudio": { caption: "TeXstudio", wingetId: "TeXstudio.TeXstudio", large: true, checked: true },
+        "PowerToys": { caption: "PowerToys", wingetId: "Microsoft.PowerToys" },
+        "foobar2000": { caption: "foobar2000", wingetId: "PeterPawlowski.foobar2000" },
     };
 
+    let silentMode = true;
     const outputDiv = document.getElementById("outputDiv");
     outputDiv.value = '';
 
@@ -118,11 +130,14 @@
             if (checkbox.checked) {
                 const appData = _data[checkbox.name];
                 if (appData && appData.wingetId) {
-                    wingetCommands.push(`winget install --id ${appData.wingetId}`);
+                    if (silentMode)
+                        wingetCommands.push(`winget install --id ${appData.wingetId} --source winget -e --silent --accept-source-agreements --accept-package-agreements`);
+                    else
+                        wingetCommands.push(`winget install --id ${appData.wingetId} --source winget -e`);
                 }
             }
         });
-        outputDiv.value = wingetCommands.join('\n');
+        outputDiv.value = wingetCommands.join('\n') + '\n';
         const el = document.getElementById('outputDiv');
         if (el) autoResize(el);
     }
@@ -137,6 +152,20 @@
     function autoResize(textarea) {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 10 + 'px';
+    }
+
+    function silent(value) {
+        const cb_silent = document.getElementById("cb_silent");
+        silentMode = cb_silent.checked;
+        refreshOutput();
+    }
+
+    function clearAll(a) {
+        const checkboxes = mainDiv.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        refreshOutput();
     }
 
     window.onload = () => {
