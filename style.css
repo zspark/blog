@@ -144,6 +144,11 @@
      user-select: none;
  }
 
+ .custom-checkbox:hover {
+     color: #DC2626;
+     text-decoration: underline;
+ }
+
  .custom-checkbox input {
      margin-right: 10px;
      width: 18px;
@@ -162,11 +167,6 @@
  .text-large {
      font-size: larger;
      font-weight: 700;
- }
-
- .text:hover {
-     color: #DC2626;
-     text-decoration: underline;
  }
 
  .textarea-outer {
@@ -232,4 +232,9 @@
      overflow-y: hidden;
      resize: none;
      box-sizing: border-box;
+ }
+
+ .color-red {
+     color: #DC2626;
+     /* text-decoration: underline; */
  }

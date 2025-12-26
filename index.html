@@ -16,7 +16,7 @@
 <!-- <body style="background-image: url('./bg.jpg'); background-repeat: repeat; background-size: cover; background-attachment: fixed;"> -->
 
 <body>
-    <main id="mainDivContainer">
+    <main>
         <div id="shortcutDiv" class="shortcut-container">
         </div>
 
@@ -171,27 +171,17 @@ ${_hasIcon ? `<svg>
 </a>`;
     }
 
-    let _renderContent = "";
-    for (const item of _shortcutList) {
-        _renderContent += createShortcutItem(item);
-    }
-    const mainDivContainer = document.getElementById("mainDivContainer");
-    const shortcutDiv = document.getElementById("shortcutDiv");
-    shortcutDiv.remove();
-    shortcutDiv.innerHTML = _renderContent;
-    mainDivContainer.appendChild(shortcutDiv);
-
-    function createItem(item) {
-        return `<div class="item-container">
+    function createCard(title, list) {
+        const createItem = (item) => {
+            return `<div class="item-container">
     <svg class="${item.large ? "icon icon-large" : "icon"}">
         <use href="./icons.svg#${item.icon ?? _DEFAULT_ICON_}" xlink:href="./icons.svg#${item.icon ?? _DEFAULT_ICON_}">
         </use>
     </svg>
     <a href="${item.url}" target="_blank">${item.name}</a>
 </div>`;
-    }
+        }
 
-    function createCard(title, list) {
         let itemHTML = "";
         for (const item of list) {
             itemHTML += createItem(item);
@@ -202,16 +192,19 @@ ${_hasIcon ? `<svg>
 </div>`;
     }
 
-    _renderContent = "";
-    for (const [key, value] of Object.entries(_data)) {
-        _renderContent += createCard(key, value);
-    }
-    const mainDiv = document.getElementById("mainDiv");
-    mainDiv.remove();
-    mainDiv.innerHTML = _renderContent;
-    mainDivContainer.appendChild(mainDiv);
+    window.onload = () => {
+        let _str = "";
+        for (const item of _shortcutList) {
+            _str += createShortcutItem(item);
+        }
+        document.getElementById("shortcutDiv").innerHTML = _str;
 
-
+        let _str2 = "";
+        for (const [key, value] of Object.entries(_data)) {
+            _str2 += createCard(key, value);
+        }
+        document.getElementById("mainDiv").innerHTML = _str2;
+    };
 
 </script>
 

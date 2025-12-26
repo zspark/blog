@@ -15,7 +15,7 @@
 
 <body>
     <main>
-        <div id="mainDivContainer" style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
             <div id="mainDiv" class="list-container"> </div>
             <div class="textarea-outer">
                 <div class="textarea-button-group">
@@ -36,13 +36,16 @@
 
         <div>
             <ul>
-                <li><b>Neovim</b> plugin repository (private):
+                <li OhMyPosh><b>OhMyPosh</b> is a plugin of PowerShell, install PS first. </li>
+                <li Neovim><b>Neovim</b> plugin repository (private):
                     <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon">
                             <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
                             </use>
                         </svg></a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
                 </li>
-                <li><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please install cpp compiler
+                <li Neovim><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please install
+                    cpp
+                    compiler
                     first:
                     <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon">
                             <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
@@ -65,19 +68,18 @@
         "ripgrep": { caption: "ripgrep", wingetId: "BurntSushi.ripgrep.MSVC", large: true, checked: true },
         "7zip": { caption: "7zip", wingetId: "7zip.7zip" },
         "Git": { caption: "Git", wingetId: "Git.Git", large: true },
-        "Node.js": { caption: "Node.js", wingetId: "OpenJS.NodeJS", large: true, },
+        "Nodejs": { caption: "Node.js", wingetId: "OpenJS.NodeJS", large: true, },
         "StrawberryPerl": { caption: "StrawberryPerl", wingetId: "StrawberryPerl.StrawberryPerl" },
         "Python": { caption: "Python", wingetId: "Python.Python.3.14" },
-        "Anaconda": { caption: "Anaconda", wingetId: "Anaconda.Anaconda", },
         "ShareX": { caption: "ShareX", wingetId: "ShareX.ShareX" },
         "Ninja": { caption: "Ninja", wingetId: "Ninja-build.Ninja" },
         "CMake": { caption: "CMake", wingetId: "Kitware.CMake" },
         "LazyGit": { caption: "LazyGit", wingetId: "JesseDuffield.lazygit" },
-        "OBS Studio": { caption: "OBS Studio", wingetId: "OBSProject.OBSStudio", large: true, },
+        "OBS_Studio": { caption: "OBS Studio", wingetId: "OBSProject.OBSStudio", large: true, },
         "Everything": { caption: "Everything", wingetId: "voidtools.Everything" },
         "SumatraPDF": { caption: "SumatraPDF", wingetId: "SumatraPDF.SumatraPDF", large: true },
         "OhMyPosh": { caption: "OhMyPosh", wingetId: "JanDeDobbeleer.OhMyPosh" },
-        "Notepad++": { caption: "Notepad++", wingetId: "Notepad++.Notepad++" },
+        "NotepadPlusPlus": { caption: "Notepad++", wingetId: "Notepad++.Notepad++" },
         "VLC": { caption: "VLC", wingetId: "VideoLAN.VLC", large: true, checked: true },
         "GitHubDesktop": { caption: "GitHub Desktop", wingetId: "GitHub.GitHubDesktop", large: true },
         "VSCode": { caption: "VSCode", wingetId: "Microsoft.VisualStudioCode" },
@@ -91,31 +93,14 @@
 
     let silentMode = true;
     const outputElem = document.getElementById("outputElem");
-    outputElem.value = '';
 
     function createCB(id, data) {
         const isLarge = data.large ?? false;
-        return `<label class="custom-checkbox">
+        return `<label id="${id}" class="custom-checkbox">
     <input type="checkbox" name="${id}" ${data.checked ? 'checked' : ''}/>
     <div class="${isLarge ? 'text text-large' : 'text'}"> ${data.caption} </div>
 </label>`;
     }
-    let _renderContent = '';
-    for (const [key, value] of Object.entries(_data)) {
-        _renderContent += createCB(key, value);
-    }
-
-    const mainDivContainer = document.getElementById("mainDivContainer");
-    const mainDiv = document.getElementById("mainDiv");
-    mainDiv.remove();
-    mainDiv.innerHTML = _renderContent;
-    mainDivContainer.prepend(mainDiv);
-    mainDiv.addEventListener('change', (event) => {
-        const target = event.target;
-        if (target.name in _data) {
-            refreshOutput();
-        }
-    });
 
     function refreshOutput() {
         let wingetCommands = [];
@@ -132,14 +117,12 @@
             }
         });
         outputElem.value = wingetCommands.length > 0 ? wingetCommands.join('\n') + '\n' : "";
-        const el = document.getElementById('outputElem');
-        if (el) autoResize(el);
+        autoResize(outputElem);
     }
 
     function copyToClipboard() {
-        var copyText = document.getElementById("outputElem");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
+        outputElem.select();
+        outputElem.setSelectionRange(0, 99999); // For mobile devices
         document.execCommand("copy");
     }
 
@@ -147,6 +130,7 @@
         const _parentElem = elem.parentElement;
         _parentElem.style.height = "auto";
         elem.style.height = "auto";
+
         const _height = elem.scrollHeight;
         _parentElem.style.height = _height + 18 + 'px';
         elem.style.height = _height + 'px';
@@ -173,6 +157,38 @@
     }
 
     window.onload = () => {
+        let _renderContent = '';
+        for (const [key, value] of Object.entries(_data)) {
+            _renderContent += createCB(key, value);
+        }
+
+        const mainDiv = document.getElementById("mainDiv");
+        mainDiv.innerHTML = _renderContent;
+        mainDiv.addEventListener('change', (event) => {
+            const target = event.target;
+            if (target.name in _data) {
+                refreshOutput();
+            }
+        });
+
+        for (const [key, _] of Object.entries(_data)) {
+            const _elem = document.getElementById(key);
+            _elem.addEventListener('mouseenter', (e) => {
+                const _id = e.target.id;
+                const _tipElems = document.querySelectorAll(`li[${_id}]`) ?? [];
+                _tipElems.forEach((ele) => {
+                    ele.classList.add('color-red')
+                })
+            });
+            _elem.addEventListener('mouseleave', (e) => {
+                const _id = e.target.id;
+                const _tipElems = document.querySelectorAll(`li[${_id}]`) ?? [];
+                _tipElems.forEach((ele) => {
+                    ele.classList.remove('color-red')
+                })
+            });
+        }
+
         refreshOutput();
     };
 
