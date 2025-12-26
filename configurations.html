@@ -15,50 +15,38 @@
 
 <body>
     <main>
-        <div class="button-group">
-            <button subtype="1" onclick="copyToClipboard('gitconfig')">
-                <div style="display: flex; align-items: center;">
-                    <svg class="icon">
-                        <use href="./icons.svg#icon-copy" xlink:href="./icons.svg#icon-copy">
-                        </use>
-                    </svg>
-                    <span>Git Config</span>
+        <div style="display: flex; gap: 20px; flex-direction: column;">
+            <div class="textarea-outer">
+                <div class="textarea-button-group">
+                    <div role="button" onclick="copyToClipboard('gitconfig')">
+                        <span>COPY</span>
+                    </div>
+                    <div role="button" onclick="downloadText('gitconfig', 'gitconfig.txt')">
+                        <span>DLOWNLOAD</span>
+                    </div>
                 </div>
-            </button>
-
-            <button subtype="1" onclick="copyToClipboard('powershell_profile')">
-                <div style="display: flex; align-items: center;">
-                    <svg class="icon">
-                        <use href="./icons.svg#icon-copy" xlink:href="./icons.svg#icon-copy">
-                        </use>
-                    </svg>
-                    <span>PowerShell profile</span>
+                <textarea class="textarea" spellcheck="false" id="gitconfig" oninput="resizeTextarea(this)"
+                    placeholder="select software above ..."></textarea>
+            </div>
+            <div class="textarea-outer">
+                <div class="textarea-button-group">
+                    <div role="button" onclick="copyToClipboard('powershell_profile')">
+                        <span>COPY</span>
+                    </div>
+                    <div role="button" onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.txt')">
+                        <span>DLOWNLOAD</span>
+                    </div>
                 </div>
-            </button>
-
-            <button subtype="2" onclick="downloadText('gitconfig', 'gitconfig')">
-                <div style="display: flex; align-items: center;">
-                    <svg class="icon">
-                        <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
-                        </use>
-                    </svg>
-                    <span>Git Config</span>
-                </div>
-            </button>
-
-            <button subtype="2" onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.ps1')">
-                <div style="display: flex; align-items: center;">
-                    <svg class="icon">
-                        <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
-                        </use>
-                    </svg>
-                    <span>PowerShell profile</span>
-                </div>
-            </button>
+                <textarea class="textarea" spellcheck="false" id="powershell_profile" oninput="resizeTextarea(this)"
+                    placeholder="select software above ..."></textarea>
+            </div>
         </div>
+    </main>
+</body>
 
-        <div>
-            <textarea id="gitconfig" spellcheck="false" class="textarea" oninput="autoResize(this)"># change file name to .gitconfig and put it in your home directory
+<script>
+    console.log("Hello Jerry!");
+    const AA = `# change file name to ".gitignore" and then move to $HOME folder.
 
 [user]
     name = JerryChaos
@@ -93,8 +81,8 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-</textarea>
-            <textarea id="powershell_profile" spellcheck="false" class="textarea" oninput="autoResize(this)"># copy this file to $HOME\Documents\PowerShell\
+`;
+    const BB = `# change file name to "Microsoft.PowerShell_profile.ps1" and then move this file to $HOME\\Documents\\PowerShell\\
 
 # global hot-key
 function custom_function{
@@ -113,13 +101,7 @@ Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
 
 # Import-Module posh-git
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\zash.omp.json" | Invoke-Expression
-</textarea>
-        </div>
-    </main>
-</body>
-
-<script>
-    console.log("Hello Jerry!");
+`;
     function copyToClipboard(elementId) {
         var copyText = document.getElementById(elementId);
         copyText.select();
@@ -140,17 +122,39 @@ Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
         window.URL.revokeObjectURL(url);
     }
 
-    function autoResize(textarea) {
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 10 + 'px';
+    function resizeTextarea(elem) {
+        const _parentElem = elem.parentElement;
+        _parentElem.style.height = "auto";
+        elem.style.height = "auto";
+        const _height = elem.scrollHeight;
+        _parentElem.style.height = _height + 18 + 'px';
+        elem.style.height = _height + 'px';
     }
+
+    function resizeAll() {
+        const el = document.getElementById('gitconfig');
+        if (el) resizeTextarea(el);
+        const el2 = document.getElementById('powershell_profile');
+        if (el2) resizeTextarea(el2);
+    }
+
 
     window.onload = () => {
         const el = document.getElementById('gitconfig');
-        if (el) autoResize(el);
+        if (el) {
+            el.innerHTML = AA;
+            resizeTextarea(el);
+        }
         const el2 = document.getElementById('powershell_profile');
-        if (el2) autoResize(el2);
+        if (el2) {
+            el2.innerHTML = BB;
+            resizeTextarea(el2);
+        }
     };
+
+    window.onresize = () => {
+        resizeAll();
+    }
 </script>
 
 </html>

@@ -15,30 +15,23 @@
 
 <body>
     <main>
-        <div class="button-group">
-            <div>
-                <input type="checkbox" id="cb_silent" onchange="silent(true)" checked>
-                <label for="cb_silent">Silent Mode</label>
-            </div>
-            <button subtype="1" onclick="clearAll('a')">
-                <div style="display: flex; align-items: center;">
-                    <span>Clear</span>
-                </div>
-            </button>
-            <button subtype="1" onclick="copyToClipboard('outputDiv')">
-                <div style="display: flex; align-items: center;">
-                    <svg class="icon">
-                        <use href="./icons.svg#icon-copy" xlink:href="./icons.svg#icon-copy">
-                        </use>
-                    </svg>
-                    <span>Copy</span>
-                </div>
-            </button>
-        </div>
-
         <div id="mainDivContainer" style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
-            <div id="mainDiv" style="width:auto;"> </div>
-            <textarea class="textarea" spellcheck="false" id="outputDiv" oninput="autoResize(this)"></textarea>
+            <div id="mainDiv" class="list-container"> </div>
+            <div class="textarea-outer">
+                <div class="textarea-button-group">
+                    <div role="button" onclick="switchSilent(this)" marked>
+                        <span>SILENT ON</span>
+                    </div>
+                    <div role="button" onclick="clearAll()">
+                        <span>CLEAR</span>
+                    </div>
+                    <div role="button" onclick="copyToClipboard()">
+                        <span>COPY</span>
+                    </div>
+                </div>
+                <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
+                    placeholder="select software above ..."></textarea>
+            </div>
         </div>
 
         <div>
@@ -97,8 +90,8 @@
     };
 
     let silentMode = true;
-    const outputDiv = document.getElementById("outputDiv");
-    outputDiv.value = '';
+    const outputElem = document.getElementById("outputElem");
+    outputElem.value = '';
 
     function createCB(id, data) {
         const isLarge = data.large ?? false;
@@ -131,33 +124,43 @@
             if (checkbox.checked) {
                 const appData = _data[checkbox.name];
                 if (appData && appData.wingetId) {
+                    let _cmd = `winget install --id ${appData.wingetId} --source winget -e`;
                     if (silentMode)
-                        wingetCommands.push(`winget install --id ${appData.wingetId} --source winget -e --silent --accept-source-agreements --accept-package-agreements`);
-                    else
-                        wingetCommands.push(`winget install --id ${appData.wingetId} --source winget -e`);
+                        _cmd += ` --silent --accept-source-agreements --accept-package-agreements`;
+                    wingetCommands.push(_cmd);
                 }
             }
         });
-        outputDiv.value = wingetCommands.join('\n') + '\n';
-        const el = document.getElementById('outputDiv');
+        outputElem.value = wingetCommands.length > 0 ? wingetCommands.join('\n') + '\n' : "";
+        const el = document.getElementById('outputElem');
         if (el) autoResize(el);
     }
 
-    function copyToClipboard(elementId) {
-        var copyText = document.getElementById(elementId);
+    function copyToClipboard() {
+        var copyText = document.getElementById("outputElem");
         copyText.select();
         copyText.setSelectionRange(0, 99999); // For mobile devices
         document.execCommand("copy");
     }
 
-    function autoResize(textarea) {
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 10 + 'px';
+    function autoResize(elem) {
+        const _parentElem = elem.parentElement;
+        _parentElem.style.height = "auto";
+        elem.style.height = "auto";
+        const _height = elem.scrollHeight;
+        _parentElem.style.height = _height + 18 + 'px';
+        elem.style.height = _height + 'px';
     }
 
-    function silent(value) {
-        const cb_silent = document.getElementById("cb_silent");
-        silentMode = cb_silent.checked;
+    function switchSilent(btnElem) {
+        silentMode = !btnElem.hasAttribute("marked");
+        if (silentMode) {
+            btnElem.setAttribute("marked", "");
+            btnElem.innerHTML = "<span>SILENT ON</span>";
+        } else {
+            btnElem.removeAttribute('marked');
+            btnElem.innerHTML = "<span>SILENT OFF</span>";
+        }
         refreshOutput();
     }
 
@@ -173,6 +176,9 @@
         refreshOutput();
     };
 
+    window.onresize = () => {
+        refreshOutput();
+    }
 </script>
 
 </html>

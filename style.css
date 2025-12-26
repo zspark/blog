@@ -2,16 +2,17 @@
      margin: 0px;
  }
 
- main {
-     margin: 20px 20px;
- }
-
  :root {
      --shortcut-bg: rgba(255, 255, 255, 0.1);
      --shortcut-hover-bg: rgba(255, 255, 255, 0.2);
      --text-color: #fbfbfc;
      --icon-bg: #2b2a33;
      --shortcut-item-width: 75px;
+     --list-item-width: 175px;
+ }
+
+ main {
+     margin: 20px 20px;
  }
 
  .shortcut-container {
@@ -21,6 +22,14 @@
      padding: 20px;
      background-color: #3f3c4e;
      margin-bottom: 20px;
+ }
+
+ .list-container {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(var(--list-item-width), var(--list-item-width)));
+     gap: 4px;
+     width: 100%;
+     padding: 20px;
  }
 
  .shortcut-item {
@@ -160,72 +169,67 @@
      text-decoration: underline;
  }
 
- .textarea {
+ .textarea-outer {
+     /* margin: 10px 10px; */
      width: 100%;
-     padding: 12px;
-
-     font-family: 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-     font-size: 14px;
-     color: #24292e;
-
-     background-color: #f6f8fa;
      border: 1px solid #d1d5da;
      border-radius: 6px;
-     outline: none;
-
-     resize: none;
-     transition: border-color 0.2s, box-shadow 0.2s;
-     box-sizing: border-box;
+     background-color: #f6f8fa;
  }
 
- .textarea:focus {
-     border-color: #0366d6;
+ .textarea-outer:has(.textarea:focus) {
      background-color: #ffffff;
      box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
  }
 
- .button-group {
+ .textarea-button-group {
+     width: 100%;
+     height: 18px;
      display: flex;
-     flex-wrap: wrap;
-     gap: 12px;
-     margin-bottom: 10px;
+     justify-content: flex-end;
  }
 
- .button-group button {
-     appearance: none;
-     -webkit-appearance: none;
+ .textarea-button-group>[role="button"] {
+     display: flex;
+     align-items: center;
+     justify-content: center;
      border: none;
      outline: none;
-
-     color: white;
-     padding: 10px 20px;
-     font-size: 14px;
-     font-weight: 500;
-     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-     border-radius: 6px;
+     padding: 0px 8px;
+     background-color: transparent;
+     user-select: none;
      cursor: pointer;
  }
 
- .button-group button[subtype="1"] {
-     background-color: #007bff;
+ .textarea-button-group>[role="button"]:last-child {
+     border-radius: 0 6px 0 0;
  }
 
- .button-group button[subtype="1"]:hover {
-     background-color: #0056b3;
+ .textarea-button-group>[role="button"]:hover {
+     background-color: #eaeaea;
  }
 
- .button-group button[subtype="1"]:active {
-     background-color: #004085;
+ .textarea-button-group>[role="button"]>span {
+     font-weight: 600;
+     font-size: 12px;
+     color: #8e8d8d;
  }
 
- .button-group button[subtype="2"] {
-     background-color: #28a745;
- }
+ .textarea {
+     width: 100%;
+     /* height: 100%; */
+     padding: 6px 8px 8px 8px;
 
- .button-group button[subtype="2"]:hover {
-     background-color: #218837;
- }
+     font-family: 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+     /* font-size: 14px; */
+     line-height: 1.5;
+     color: #24292e;
 
- .button-group button[subtype="2"]:active {
-     background-color: #1c722f;
+     background-color: transparent;
+     border: none;
+     outline: none;
+
+     overflow-y: hidden;
+     resize: none;
+     box-sizing: border-box;
  }

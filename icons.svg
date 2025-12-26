@@ -1138,5 +1138,10 @@
         style="fill:#ff661b" />
     </symbol>
 
+    <symbol viewBox="0 0 448 448" id="icon-menu">
+      <path style="fill-opacity:1;stroke:none"
+        d="M0 636.362h448v64H0zm0 160h448v64H0zm0 160h448v64H0z" transform="translate(0 -604.362)" />
+    </symbol>
+
   </defs>
 </svg>

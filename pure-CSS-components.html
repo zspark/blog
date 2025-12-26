@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>pure CSS components</title>
+    <link href="./favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 容器设置 */
+        .dropdown-container {
+            position: relative;
+        }
+
+        /* 移除 details 默认的箭头 */
+        .custom-dropdown summary {
+            list-style: none;
+            padding: 2px 2px;
+            background: #f8f9fa;
+            border: none;
+            /* border-radius: 4px; */
+            /* cursor: pointer;
+     display: flex;
+     justify-content: space-between;
+     align-items: center; */
+            user-select: none;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+        }
+
+        .custom-dropdown summary:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* 隐藏原生箭头（针对 Chrome/Safari） */
+        .custom-dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* 下拉内容面板 */
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 150px;
+            background: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 复选框行样式 */
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checkbox-item:hover {
+            background-color: #e6e6e6;
+        }
+
+        .checkbox-item input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* 展开时的样式变化 */
+        .custom-dropdown[open] summary {
+            border-bottom: 1px transparent;
+            border-radius: 4px 4px 0 0;
+            background: #e9ecef;
+            background-color: #e6e6e6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dropdown-container">
+        <details class="custom-dropdown">
+            <summary>
+                <svg class="icon">
+                    <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
+                    </use>
+                </svg>
+            </summary>
+            <div class="dropdown-content">
+                <label class="checkbox-item">
+                    <input type="checkbox" name="option1" id="cb_silent" onchange="silent(true)" checked> Silent Mode
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="option2"> 选项二
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="option3"> 选项三
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="option4"> 选项四
+                </label>
+            </div>
+        </details>
+    </div>
+
+    <button subtype="2" onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.ps1')">
+        <div style="display: flex; align-items: center;">
+            <svg class="icon">
+                <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
+                </use>
+            </svg>
+            <span>PowerShell profile</span>
+        </div>
+    </button>
+
+    <div class="textarea-outer">
+        <div class="textarea-button-group">
+            <div role="button" onclick="switchSilent(this)" marked>
+                <span>Silent On</span>
+            </div>
+            <div role="button" onclick="clearAll()">
+                <span> CLEAR</span>
+            </div>
+            <div role="button" onclick="copyToClipboard('outputElem')">
+                <svg class="icon">
+                    <use href="./icons.svg#icon-menu" xlink:href="./icons.svg#icon-menu">
+                    </use>
+                </svg>
+                <span>COPY</span>
+            </div>
+        </div>
+        <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
+            placeholder="select software above ..."></textarea>
+    </div>
+
+
+</body>
+
+<script>
+    function autoResize(elem) {
+        const _parentElem = elem.parentElement;
+        _parentElem.style.height = "auto";
+        elem.style.height = "auto";
+        const _height = elem.scrollHeight;
+        _parentElem.style.height = _height + 18 + 'px';
+        elem.style.height = _height + 'px';
+    }
+</script>
+
+</html>
