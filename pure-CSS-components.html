@@ -123,19 +123,24 @@
     </button>
 
     <div class="textarea-outer">
-        <div class="textarea-button-group">
-            <div role="button" onclick="switchSilent(this)" marked>
-                <span>Silent On</span>
+        <div class="textarea-head">
+            <div class="textarea-caption">
+                this is caption of the textarea.
             </div>
-            <div role="button" onclick="clearAll()">
-                <span> CLEAR</span>
-            </div>
-            <div role="button" onclick="copyToClipboard('outputElem')">
-                <svg class="icon">
-                    <use href="./icons.svg#icon-menu" xlink:href="./icons.svg#icon-menu">
-                    </use>
-                </svg>
-                <span>COPY</span>
+            <div class="textarea-buttons">
+                <div role="button" onclick="funcA(this)">
+                    <span>Silent On</span>
+                </div>
+                <div role="button" onclick="funcB()">
+                    <span>CLEAR</span>
+                </div>
+                <div role="button" onclick="funcC('outputElem')">
+                    <svg class="icon">
+                        <use href="./icons.svg#icon-menu" xlink:href="./icons.svg#icon-menu">
+                        </use>
+                    </svg>
+                    <span>COPY</span>
+                </div>
             </div>
         </div>
         <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"

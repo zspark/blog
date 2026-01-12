@@ -18,15 +18,20 @@
         <div style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
             <div id="mainDiv" class="list-container"> </div>
             <div class="textarea-outer">
-                <div class="textarea-button-group">
-                    <div role="button" onclick="switchSilent(this)" marked>
-                        <span>SILENT ON</span>
+                <div class="textarea-head">
+                    <div class="textarea-caption">
+                        commands of powershell
                     </div>
-                    <div role="button" onclick="clearAll()">
-                        <span>CLEAR</span>
-                    </div>
-                    <div role="button" onclick="copyToClipboard()">
-                        <span>COPY</span>
+                    <div class="textarea-buttons">
+                        <div role="button" onclick="switchSilent(this)" marked>
+                            <span>SILENT ON</span>
+                        </div>
+                        <div role="button" onclick="clearAll()">
+                            <span>CLEAR</span>
+                        </div>
+                        <div role="button" onclick="copyToClipboard()">
+                            <span>COPY</span>
+                        </div>
                     </div>
                 </div>
                 <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
