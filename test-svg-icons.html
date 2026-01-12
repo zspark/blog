@@ -218,18 +218,18 @@
     <svg class="icon">
         <use href="./icons.svg#icon-steam-1" xlink:href="./icons.svg#icon-steam-1"></use>
     </svg>
-    
+
     <svg class="icon">
         <use href="./icons.svg#icon-crazygames" xlink:href="./icons.svg#icon-crazygames"></use>
-    </svg> 
-   
+    </svg>
+
     <svg class="icon">
         <use href="./icons.svg#icon-armorgames" xlink:href="./icons.svg#icon-armorgames"></use>
     </svg>
- 
+
     <svg class="icon">
         <use href="./icons.svg#icon-little-alchemy-2" xlink:href="./icons.svg#icon-little-alchemy-2"></use>
-    </svg> 
+    </svg>
     <svg class="icon">
         <use href="./icons.svg#icon-kongregate" xlink:href="./icons.svg#icon-kongregate"></use>
     </svg>
@@ -249,9 +249,21 @@
         <use href="./icons.svg#icon-heart" xlink:href="./icons.svg#icon-heart"></use>
     </svg>
 
+    <div id="letters">
 
+    </div>
 
-
+    <script>
+        const _elem = document.getElementById("letters");
+        let _str = "";
+        for (let i = 0; i < 26; ++i) {
+            let _letter = String.fromCharCode(97 + i);
+            _str += `<svg class="icon">
+    <use href="./icons.svg#icon-letter-${_letter}" xlink:href="./icons.svg#icon-letter-${_letter}"></use>
+</svg>`
+        }
+        _elem.innerHTML = _str;
+    </script>
 
 </body>
 
