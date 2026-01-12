@@ -3,8 +3,9 @@
     --shortcut-hover-bg: rgba(255, 255, 255, 0.2);
     --text-color: #fbfbfc;
     --icon-bg: #2b2a33;
-    --shortcut-item-width: 75px;
+    --shortcut-item-width: 80px;
     --list-item-width: 175px;
+    --card-min-width: 280px;
 }
 
 html {
@@ -29,17 +30,9 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--shortcut-item-width), var(--shortcut-item-width)));
     gap: 4px;
-    padding: 20px;
+    padding: 10px;
     background-color: #3f3c4e;
     margin-bottom: 20px;
-}
-
-.list-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--list-item-width), var(--list-item-width)));
-    gap: 4px;
-    width: 100%;
-    padding: 20px;
 }
 
 .shortcut-item {
@@ -57,7 +50,7 @@ main {
     background-color: var(--shortcut-hover-bg);
 }
 
-.icon-wrapper {
+.shortcut-icon {
     width: 48px;
     height: 48px;
     background-color: var(--icon-bg);
@@ -67,13 +60,7 @@ main {
     position: relative;
 }
 
-.icon-wrapper svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.shortcut-item .title {
+.shortcut-title {
     color: var(--text-color);
     font-size: 0.8rem;
     text-align: center;
@@ -83,14 +70,7 @@ main {
     white-space: nowrap;
 }
 
-.icon-placeholder {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
 .icon {
-    width: 16px;
-    height: 16px;
     fill: currentColor;
     display: inline-block;
     vertical-align: middle;
@@ -111,14 +91,24 @@ main {
     text-decoration: underline;
 }
 
-.icon-large {
+.size-16 {
+    width: 16px;
+    height: 16px;
+}
+
+.size-20 {
     width: 20px;
     height: 20px;
 }
 
-.icon-large-2 {
+.size-24 {
     width: 24px;
     height: 24px;
+}
+
+.size-full {
+    width: 100%;
+    height: 100%;
 }
 
 .icon-large~a {
@@ -129,7 +119,7 @@ main {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
     grid-gap: 10px;
     grid-auto-rows: 1px;
 }
@@ -142,11 +132,12 @@ main {
 }
 
 .card-title {
+    /* user-select: none; */
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e0e0e0;
+    /* border-bottom: 1px solid #e0e0e0; */
     padding: 16px 16px 8px 8px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -158,22 +149,22 @@ main {
 .card-item {
     display: flex;
     align-items: center;
-    margin: 5px 5px;
+    margin: 6px 5px;
 }
 
-.custom-checkbox {
+.checkboxWithLabel {
     display: flex;
     align-items: center;
     cursor: pointer;
     user-select: none;
 }
 
-.custom-checkbox:hover {
+.checkboxWithLabel:hover {
     color: #DC2626;
     text-decoration: underline;
 }
 
-.custom-checkbox input {
+.checkboxWithLabel input {
     margin-right: 10px;
     width: 18px;
     height: 18px;
@@ -272,4 +263,12 @@ main {
 .color-red {
     color: #DC2626;
     /* text-decoration: underline; */
+}
+
+.list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--list-item-width), var(--list-item-width)));
+    gap: 4px;
+    width: 100%;
+    padding: 20px;
 }

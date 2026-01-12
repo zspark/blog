@@ -43,7 +43,7 @@
             <ul>
                 <li OhMyPosh><b>OhMyPosh</b> is a plugin of PowerShell, install PS first. </li>
                 <li Neovim><b>Neovim</b> plugin repository (private):
-                    <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon">
+                    <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon size-16">
                             <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
                             </use>
                         </svg></a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
@@ -52,7 +52,7 @@
                     cpp
                     compiler
                     first:
-                    <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon">
+                    <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon size-16">
                             <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
                             </use>
                         </svg></a>
@@ -99,9 +99,9 @@
     let silentMode = true;
     const outputElem = document.getElementById("outputElem");
 
-    function createCB(id, data) {
+    function _createCB(id, data) {
         const isLarge = data.large ?? false;
-        return `<label id="${id}" class="custom-checkbox">
+        return `<label id="${id}" class="checkboxWithLabel">
     <input type="checkbox" name="${id}" ${data.checked ? 'checked' : ''}/>
     <div class="${isLarge ? 'text text-large' : 'text'}"> ${data.caption} </div>
 </label>`;
@@ -164,7 +164,7 @@
     window.onload = () => {
         let _renderContent = '';
         for (const [key, value] of Object.entries(_data)) {
-            _renderContent += createCB(key, value);
+            _renderContent += _createCB(key, value);
         }
 
         const mainDiv = document.getElementById("mainDiv");

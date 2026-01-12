@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en_US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Sprite</title>
+    <style>
+        .icon {
+            width: 100px;
+            height: 100px;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="svgs"> </div>
+
+    <script>
+        const _DATA = [
+            "icon-alipay",
+            "icon-bilibili",
+            "icon-discord",
+            "icon-docker",
+            "icon-facebook",
+            "icon-facebook-2013",
+            "icon-firefox",
+            "icon-github-black",
+            "icon-github-blue",
+            "icon-google-mail",
+            "icon-google-docs",
+            "icon-google-drive",
+            "icon-google-sheets",
+            "icon-google-translate",
+            "icon-google-chrome",
+            "icon-google-cloud",
+            "icon-google-maps",
+            "icon-google-photos",
+            "icon-google-scholar",
+            "icon-apple-cloud",
+            "icon-apple",
+            "icon-instagram-2016",
+            "icon-instagram-flat",
+            "icon-iqiyi",
+            "icon-jd",
+            "icon-latex",
+            "icon-linkedin",
+            "icon-AUT-new",
+            "icon-AUT-old",
+            "icon-markdown",
+            "icon-netflix",
+            "icon-nodejs",
+            "icon-python",
+            "icon-reddit",
+            "icon-spotify",
+            "icon-stack-exchange",
+            "icon-stack-overflow",
+            "icon-taobao",
+            "icon-tencent-video",
+            "icon-tiktok-1",
+            "icon-tiktok-2",
+            "icon-tmall",
+            "icon-twitter",
+            "icon-X",
+            "icon-zhihu",
+            "icon-youtube",
+            "icon-youtube-music",
+            "icon-google-news",
+            "icon-youku",
+            "icon-douban",
+            "icon-dropbox",
+            "icon-chatgpt",
+            "icon-chatgpt-green",
+            "icon-badgennet",
+            "icon-tablesgenerator",
+            "icon-matrix-calculator",
+            "icon-rotationconverter",
+            "icon-google-slides",
+            "icon-MDN",
+            "icon-katex",
+            "icon-gitlab",
+            "icon-bitbucket",
+            "icon-ebay",
+            "icon-amazon",
+            "icon-wolfram-alpha",
+            "icon-desmos",
+            "icon-redstar",
+            "icon-google-gemini",
+            "icon-trademe",
+            "icon-software",
+            "icon-external-link-1",
+            "icon-external-link-2",
+            "icon-download",
+            "icon-copy",
+            "icon-settings",
+            "icon-floppy-disk",
+            "icon-setup",
+            "icon-pdf",
+            "icon-geogebra",
+            "icon-steam-1",
+            "icon-crazygames",
+            "icon-armorgames",
+            "icon-kongregate",
+            "icon-little-alchemy-2",
+            "icon-gltf",
+            "icon-font-awesome",
+            "icon-openmoji",
+            "icon-twitch",
+            "icon-heart",
+            "icon-menu",
+            "icon-card",
+            "icon-letter-a",
+            "icon-letter-b",
+            "icon-letter-c",
+            "icon-letter-d",
+            "icon-letter-e",
+            "icon-letter-f",
+            "icon-letter-g",
+            "icon-letter-h",
+            "icon-letter-i",
+            "icon-letter-j",
+            "icon-letter-k",
+            "icon-letter-l",
+            "icon-letter-m",
+            "icon-letter-n",
+            "icon-letter-o",
+            "icon-letter-p",
+            "icon-letter-q",
+            "icon-letter-r",
+            "icon-letter-s",
+            "icon-letter-t",
+            "icon-letter-u",
+            "icon-letter-v",
+            "icon-letter-w",
+            "icon-letter-x",
+            "icon-letter-y",
+            "icon-letter-z",
+        ];
+        const _elem = document.getElementById("svgs");
+        let _str = "";
+        _DATA.forEach(id => {
+            _str += `<svg class="icon">
+    <use href="./icons.svg#${id}" xlink:href="./icons.svg#${id}"></use>
+</svg>`
+        });
+        _elem.innerHTML = _str;
+    </script>
+
+</body>
+
+</html>

@@ -15,12 +15,12 @@
 
 <!-- <body style="background-image: url('./bg.jpg'); background-repeat: repeat; background-size: cover; background-attachment: fixed;"> -->
 
-<body>
+<body style="background-color: #24292e;">
     <main>
-        <div id="shortcutDiv" class="shortcut-container">
+        <div id="shortcutContainer" class="shortcut-container">
         </div>
 
-        <div id="mainDiv" class="card-container"> </div>
+        <div id="cardContainer" class="card-container"> </div>
     </main>
 </body>
 
@@ -28,17 +28,17 @@
     console.log("Hello Jerry!");
 
     const _shortcutList = [
-        { url: "https://drive.google.com", name: "Google Drive", icon: "icon-google-drive", large: true },
+        { url: "https://drive.google.com", name: "Drive", icon: "icon-google-drive", large: true },
         { url: "https://mail.google.com", name: "GMail", icon: "icon-google-mail", large: true },
         { url: "https://gemini.google.com/", name: "Gemini", icon: "icon-google-gemini", large: true },
         { url: "https://chat.openai.com/", name: "ChatGPT", icon: "icon-chatgpt-green", large: true },
         { url: "https://www.youtube.com", name: "YouTube", icon: "icon-youtube", large: true },
         { url: "https://music.youtube.com", name: "Music", icon: "icon-youtube-music", large: true },
-        { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
+        { url: "https://maps.google.com", name: "Maps", icon: "icon-google-maps" },
         { url: "https://translate.google.com", name: "Translate", icon: "icon-google-translate", large: true },
         { url: "https://www.icloud.com", name: "iCloud", icon: "icon-apple-cloud" },
-        { url: "https://docs.google.com", name: "Google Docs", icon: "icon-google-docs" },
-        { url: "https://sheets.google.com", name: "Google Sheets", icon: "icon-google-sheets" },
+        { url: "https://docs.google.com", name: "Docs", icon: "icon-google-docs" },
+        { url: "https://sheets.google.com", name: "Sheets", icon: "icon-google-sheets" },
         { url: "https://github.com", name: "GitHub", icon: "icon-github-blue", large: true },
     ];
 
@@ -46,6 +46,7 @@
         {
             name: "TOOLS",
             icon: "icon-card",
+            color: "#ebf9ff",
             data: [
                 { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos", large: true },
                 { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-pdf", large: true },
@@ -53,7 +54,6 @@
                 { url: "https://latexeditor.lagrida.com/", name: "LaTeX Editor", icon: "icon-latex", large: true },
                 { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator", large: true },
                 { url: "https://jsonformatter.curiousconcept.com/#", name: "JSON Formatter" },
-                { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
                 { url: "https://quaternions.online/", name: "Quaternions Online" },
                 { url: "https://matrixcalc.org/en/", name: "Matrix Calculator", icon: "icon-matrix-calculator" },
                 { url: "https://www.andre-gaschler.com/rotationconverter/", name: "Rotation Converter", icon: "icon-rotationconverter" },
@@ -63,6 +63,7 @@
         }, {
             name: "DEVELOP",
             icon: "icon-card",
+            color: "#ffebf7",
             data: [
                 { url: "./softwares.html", name: "Software Installments", icon: "icon-setup" },
                 { url: "./configurations.html", name: "Configurations", icon: "icon-settings" },
@@ -85,10 +86,12 @@
                 { url: "https://wjakob.github.io/nori/", name: "Nori Renderer" },
                 { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", },
                 { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
+                { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
             ]
         }, {
             name: "VIDEO & AUDIO",
             icon: "icon-card",
+            color: "#ebf1ff",
             data: [
                 { url: "https://www.bilibili.com", name: "Bilibili", icon: "icon-bilibili", large: true },
                 { url: "https://v.qq.com", name: "Tencent Video", icon: "icon-tencent-video", large: true },
@@ -103,10 +106,10 @@
         }, {
             name: "SOCIAL",
             icon: "icon-card",
+            color: "#ffebf9",
             data: [
                 { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-twitter", large: true },
                 { url: "https://www.instagram.com/", name: "Instagram", icon: "icon-instagram-flat" },
-                { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
                 { url: "https://www.facebook.com", name: "Facebook", icon: "icon-facebook-2013" },
                 { url: "https://www.linkedin.com", name: "LinkedIn", icon: "icon-linkedin" },
                 { url: "https://www.zhihu.com", name: "Zhihu", icon: "icon-zhihu" },
@@ -119,6 +122,7 @@
         }, {
             name: "SHOPPING",
             icon: "icon-card",
+            color: "#ebf1ff",
             data: [
                 { url: "https://www.taobao.com", name: "Taobao", icon: "icon-taobao" },
                 { url: "https://www.tmall.com", name: "Tmall", icon: "icon-tmall" },
@@ -132,6 +136,7 @@
         }, {
             name: "BLOGS",
             icon: "icon-card",
+            color: "#f6ebff",
             data: [
                 { url: "./blog.html", name: "Jerry Chaos Blog", large: true },
                 { url: "https://www.songho.ca/", name: "Song Ho Ahn's Homepage" },
@@ -147,18 +152,23 @@
         }, {
             name: "GAMES",
             icon: "icon-card",
+            color: "#ffefeb",
             data: [
                 { url: "https://www.crazygames.com/", name: "Crazy Games", icon: "icon-crazygames" },
                 { url: "https://armorgames.com/", name: "Armor Games", icon: "icon-armorgames" },
                 { url: "https://www.kongregate.com/", name: "Kongregate", icon: "icon-kongregate" },
                 { url: "https://littlealchemy2.com/", name: "Little Alchemy 2", icon: "icon-little-alchemy-2" },
                 { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
-                { url: "https://www.thewayoftheninja.org/", name: "The Way of the Ninja" }
+                { url: "https://www.thewayoftheninja.org/", name: "The Way of the Ninja" },
+                { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
             ]
         }, {
             name: "MISC",
             icon: "icon-card",
+            color: "#ebffee",
             data: [
+                { url: "./svg-sprite.html", name: "SVG icons in this site" },
+                { url: "./html-components.html", name: "custom HTML components" },
                 { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
                 { url: "https://emojipedia.org/", name: "Emojipedia", icon: "icon-heart" },
                 { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
@@ -175,50 +185,49 @@
         }
     ];
 
-    function createShortcutItem(item) {
+    function _createShortcutItem(item) {
         const _hasIcon = item.icon !== undefined;
         const _icon = _hasIcon ? item.icon : "icon-letter-" + item.name.charAt(0).toLowerCase();
         return `<a href="${item.url}" class="shortcut-item" target="_blank">
-    <div class="icon-wrapper">
-        <svg>
-            <use href="./icons.svg#${_icon}"
-                xlink:href="./icons.svg#${_icon}">
-            </use>
+    <div class="shortcut-icon">
+        <svg class="icon size-full">
+            <use href="./icons.svg#${_icon}" xlink:href="./icons.svg#${_icon}"></use>
         </svg>
     </div>
-    <div class="title">${item.name}</div>
+    <div class="shortcut-title">${item.name}</div>
 </a>`;
     }
 
-    function createCard(title, icon, list) {
-        const createItem = (item) => {
+    function _createCard(card) {
+        const _createItem = (item) => {
             const _hasIcon = item.icon !== undefined;
             const _icon = _hasIcon ? item.icon : "icon-letter-" + item.name.charAt(0).toLowerCase();
             return `<div class="card-item">
-    <svg class="${item.large ? "icon icon-large" : "icon"}">
-        <use href="./icons.svg#${_icon}" xlink:href="./icons.svg#${_icon}">
-        </use>
+    <svg class="icon ${item.large ? "size-20" : "size-16"}">
+        <use href="./icons.svg#${_icon}" xlink:href="./icons.svg#${_icon}"></use>
     </svg>
     <a href="${item.url}" target="_blank">${item.name}</a>
 </div>`;
         }
 
         let itemHTML = "";
-        for (const item of list) {
-            itemHTML += createItem(item);
+        for (const item of card.data) {
+            itemHTML += _createItem(item);
         }
         return `<div class="card">
-    <div class="card-title">
-        <svg class="icon icon-large-2">
-            <use href="./icons.svg#${icon}" xlink:href="./icons.svg#${icon}"></use>
-        </svg>
-        ${title}
+    <div class="size-full" style="background-color:${card.color};">
+        <div class="card-title">
+            <svg class="icon size-24">
+                <use href="./icons.svg#${card.icon}" xlink:href="./icons.svg#${card.icon}"></use>
+            </svg>
+            ${card.name}
+        </div>
+        <div class="card-content">${itemHTML}</div>
     </div>
-    <div class="card-content">${itemHTML}</div>
 </div>`;
     }
 
-    function resizeGridItem(item) {
+    function _calcCardHeight(item) {
         const grid = document.querySelector(".card-container");
         const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
         const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
@@ -231,18 +240,18 @@
     window.onload = () => {
         let _str = "";
         for (const item of _shortcutList) {
-            _str += createShortcutItem(item);
+            _str += _createShortcutItem(item);
         }
-        document.getElementById("shortcutDiv").innerHTML = _str;
+        document.getElementById("shortcutContainer").innerHTML = _str;
 
         let _str2 = "";
-        for (const item of _data) {
-            _str2 += createCard(item.name, item.icon, item.data);
+        for (const card of _data) {
+            _str2 += _createCard(card);
         }
-        document.getElementById("mainDiv").innerHTML = _str2;
+        document.getElementById("cardContainer").innerHTML = _str2;
 
         const allItems = document.querySelectorAll(".card");
-        allItems.forEach(resizeGridItem);
+        allItems.forEach(_calcCardHeight);
     };
 
 </script>
