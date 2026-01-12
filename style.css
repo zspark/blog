@@ -112,17 +112,18 @@
      font-weight: 600;
  }
 
- .item-container {
+ .card-item {
      display: flex;
      align-items: center;
      margin: 5px 5px;
  }
 
 
- .card-container {
+ .card {
      border: 1px solid #c6c6c6;
      overflow: hidden;
      margin: 0;
+     grid-row-end: span 15;
  }
 
  .card-title {

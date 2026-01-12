@@ -21,7 +21,7 @@
         </div>
 
         <div id="mainDiv"
-            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); grid-gap: 20px;">
         </div>
     </main>
 </body>
@@ -38,12 +38,12 @@
         { url: "https://chat.openai.com/", name: "ChatGPT", icon: "icon-chatgpt-green", large: true },
         { url: "https://www.youtube.com", name: "YouTube", icon: "icon-youtube", large: true },
         { url: "https://music.youtube.com", name: "Music", icon: "icon-youtube-music", large: true },
-        { url: "https://github.com", name: "GitHub", icon: "icon-github-blue", large: true },
+        { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
         { url: "https://translate.google.com", name: "Translate", icon: "icon-google-translate", large: true },
         { url: "https://www.icloud.com", name: "iCloud", icon: "icon-apple-cloud" },
         { url: "https://docs.google.com", name: "Google Docs", icon: "icon-google-docs" },
         { url: "https://sheets.google.com", name: "Google Sheets", icon: "icon-google-sheets" },
-        { url: "https://maps.google.com", name: "Google Maps", icon: "icon-google-maps" },
+        { url: "https://github.com", name: "GitHub", icon: "icon-github-blue", large: true },
     ];
 
     const _data = {
@@ -82,8 +82,8 @@
             { url: "https://www.netflix.com", name: "Netflix", icon: "icon-netflix" },
             { url: "https://www.spotify.com", name: "Spotify", icon: "icon-spotify" },
             { url: "https://www.twitch.tv/", name: "Twitch", icon: "icon-twitch", large: true },
-            { url: "https://freesound.org/", name: "Freesound", icon: "icon-freesound", large: true },
-            { url: "https://sonniss.com/gameaudiogdc/", name: "Game Audio GDC", icon: "icon-gdc" },
+            { url: "https://freesound.org/", name: "Freesound", large: true },
+            { url: "https://sonniss.com/gameaudiogdc/", name: "Game Audio GDC" },
         ],
         "SOCIAL": [
             { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-twitter", large: true },
@@ -95,6 +95,7 @@
             { url: "https://www.discord.com", name: "Discord", icon: "icon-discord", large: true },
             { url: "https://www.reddit.com", name: "Reddit", icon: "icon-reddit" },
             { url: "https://www.tiktok.com/", name: "TikTok", icon: "icon-tiktok-2" },
+            { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
             { url: "https://news.google.com", name: "Google News", icon: "icon-google-news" },
         ],
         "EDUCATION": [
@@ -108,8 +109,18 @@
             { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "icon-wolfram-alpha" },
             { url: "https://scholar.google.com/", name: "Google Scholar", icon: "icon-google-scholar" }
         ],
+        "SHOPPING": [
+            { url: "https://www.taobao.com", name: "Taobao", icon: "icon-taobao" },
+            { url: "https://www.tmall.com", name: "Tmall", icon: "icon-tmall" },
+            { url: "https://www.jd.com", name: "JD", icon: "icon-jd" },
+            { url: "https://www.amazon.com", name: "Amazon", icon: "icon-amazon" },
+            { url: "https://www.ebay.com", name: "eBay", icon: "icon-ebay" },
+            { url: "https://www.apple.com", name: "Apple", icon: "icon-apple" },
+            { url: "https://www.trademe.co.nz/", name: "Trade Me", icon: "icon-trademe" },
+            { url: "https://www.routledge.com/", name: "Routledge" },
+        ],
         "BLOGS": [
-            { url: "./blog.html", name: "Jerry Chaos' Blog", large: true },
+            { url: "./blog.html", name: "Jerry Chaos Blog", large: true },
             { url: "https://www.songho.ca/", name: "Song Ho Ahn's Homepage" },
             { url: "https://blog.lmorchard.com", name: "Lmorchard's Blog" },
             { url: "https://www.jayconrod.com/posts", name: "Jay Conrod's Blog" },
@@ -138,21 +149,10 @@
             { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
             { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "Method of Separating Axes", icon: "icon-pdf" },
             { url: "https://badgen.net/", name: "Badgen", icon: "icon-badgennet" },
-            { url: "https://photos.google.com", name: "Google Photos", icon: "icon-google-photos" },
             { url: "https://emojipedia.org/", name: "Emojipedia", icon: "icon-heart" },
             { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
             { url: "https://fontawesome.com/", name: "Font Awesome", icon: "icon-font-awesome" },
             { url: "https://github.com/zspark/Microsoft-Segoe-UI-Emoji-SVG-Icons", name: "Segoe UI Emoji SVG Icons", icon: "icon-heart" },
-        ],
-        "SHOPPING": [
-            { url: "https://www.taobao.com", name: "Taobao", icon: "icon-taobao" },
-            { url: "https://www.tmall.com", name: "Tmall", icon: "icon-tmall" },
-            { url: "https://www.jd.com", name: "JD", icon: "icon-jd" },
-            { url: "https://www.amazon.com", name: "Amazon", icon: "icon-amazon" },
-            { url: "https://www.ebay.com", name: "eBay", icon: "icon-ebay" },
-            { url: "https://www.apple.com", name: "Apple", icon: "icon-apple" },
-            { url: "https://www.trademe.co.nz/", name: "Trade Me", icon: "icon-trademe" },
-            { url: "https://www.routledge.com/", name: "Routledge" },
         ],
     };
 
@@ -173,7 +173,7 @@ ${_hasIcon ? `<svg>
 
     function createCard(title, list) {
         const createItem = (item) => {
-            return `<div class="item-container">
+            return `<div class="card-item">
     <svg class="${item.large ? "icon icon-large" : "icon"}">
         <use href="./icons.svg#${item.icon ?? _DEFAULT_ICON_}" xlink:href="./icons.svg#${item.icon ?? _DEFAULT_ICON_}">
         </use>
@@ -186,7 +186,7 @@ ${_hasIcon ? `<svg>
         for (const item of list) {
             itemHTML += createItem(item);
         }
-        return `<div class="card-container">
+        return `<div class="card">
     <div class="card-title">${title}</div>
     <div class="card-content">${itemHTML}</div>
 </div>`;
