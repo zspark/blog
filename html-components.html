@@ -7,22 +7,20 @@
     <link href="./favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 容器设置 */
-        .dropdown-container {
+        details {
             position: relative;
         }
 
-        /* 移除 details 默认的箭头 */
         .custom-dropdown summary {
             list-style: none;
             padding: 2px 2px;
             background: #f8f9fa;
             border: none;
-            /* border-radius: 4px; */
-            /* cursor: pointer;
-     display: flex;
-     justify-content: space-between;
-     align-items: center; */
+            /* border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; */
             user-select: none;
 
             display: flex;
@@ -35,16 +33,14 @@
             background-color: #e6e6e6;
         }
 
-        /* 隐藏原生箭头（针对 Chrome/Safari） */
         .custom-dropdown summary::-webkit-details-marker {
             display: none;
         }
 
-        /* 下拉内容面板 */
         .dropdown-content {
             position: absolute;
             top: 100%;
-            left: 0;
+            /* left: 0; */
             right: 0;
             width: 150px;
             background: white;
@@ -57,7 +53,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* 复选框行样式 */
         .checkbox-item {
             display: flex;
             align-items: center;
@@ -75,7 +70,6 @@
             cursor: pointer;
         }
 
-        /* 展开时的样式变化 */
         .custom-dropdown[open] summary {
             border-bottom: 1px transparent;
             border-radius: 4px 4px 0 0;
@@ -86,48 +80,13 @@
 </head>
 
 <body>
-
-    <div class="dropdown-container">
-        <details class="custom-dropdown">
-            <summary>
-                <svg class="icon">
-                    <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
-                    </use>
-                </svg>
-            </summary>
-            <div class="dropdown-content">
-                <label class="checkbox-item">
-                    <input type="checkbox" name="option1" id="cb_silent" onchange="silent(true)" checked> Silent Mode
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="option2"> 选项二
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="option3"> 选项三
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="option4"> 选项四
-                </label>
-            </div>
-        </details>
-    </div>
-
-    <button subtype="2" onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.ps1')">
-        <div style="display: flex; align-items: center;">
-            <svg class="icon">
-                <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
-                </use>
-            </svg>
-            <span>PowerShell profile</span>
-        </div>
-    </button>
-
     <div class="textarea-outer">
         <div class="textarea-head">
             <div class="textarea-caption">
                 this is caption of the textarea.
             </div>
-            <div class="textarea-buttons">
+            <div role="button" class="textarea-buttons">
+
                 <div role="button" onclick="funcA(this)">
                     <span>Silent On</span>
                 </div>
@@ -135,12 +94,35 @@
                     <span>CLEAR</span>
                 </div>
                 <div role="button" onclick="funcC('outputElem')">
-                    <svg class="icon">
-                        <use href="./icons.svg#icon-menu" xlink:href="./icons.svg#icon-menu">
+                    <svg class="icon size-14 svg-color-gray">
+                        <use href="./icons.svg#icon-download" xlink:href="./icons.svg#icon-download">
                         </use>
                     </svg>
-                    <span>COPY</span>
+                    <span>DOWNLOAD</span>
                 </div>
+
+                <details role="button" class="custom-dropdown">
+                    <summary>
+                        <svg class="icon size-14 svg-color-gray">
+                            <use href="./icons.svg#icon-menu" xlink:href="./icons.svg#icon-menu"></use>
+                        </svg>
+                    </summary>
+                    <div class="dropdown-content">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="option1" id="cb_silent" onchange="silent(true)" checked>
+                            Silent Mode
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="option2"> 选项二
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="option3"> 选项三
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="option4"> 选项四
+                        </label>
+                    </div>
+                </details>
             </div>
         </div>
         <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
@@ -159,6 +141,16 @@
         _parentElem.style.height = _height + 18 + 'px';
         elem.style.height = _height + 'px';
     }
+
+    document.addEventListener('mousedown', (e) => {
+        const allDetails = document.querySelectorAll('details[open]');
+
+        allDetails.forEach(details => {
+            if (!details.contains(e.target)) {
+                details.removeAttribute('open');
+            }
+        });
+    });
 </script>
 
 </html>

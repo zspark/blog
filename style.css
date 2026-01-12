@@ -3,7 +3,7 @@
     --shortcut-hover-bg: rgba(255, 255, 255, 0.2);
     --text-color: #fbfbfc;
     --icon-bg: #2b2a33;
-    --shortcut-item-width: 80px;
+    --shortcut-item-width: 90px;
     --list-item-width: 175px;
     --card-min-width: 280px;
 }
@@ -12,18 +12,22 @@ html {
     font-size: 16px;
 }
 
-@media screen and (max-width: 767px) {
-    html {
-        font-size: 24px;
-    }
-}
-
 body {
     margin: 0px;
 }
 
 main {
-    margin: 20px 20px;
+    margin: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    html {
+        font-size: 24px;
+    }
+
+    main {
+        margin: 0px;
+    }
 }
 
 .shortcut-container {
@@ -31,7 +35,7 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(var(--shortcut-item-width), var(--shortcut-item-width)));
     gap: 4px;
     padding: 10px;
-    background-color: #3f3c4e;
+    /* background-color: #3f3c4e; */
     margin-bottom: 20px;
 }
 
@@ -51,8 +55,6 @@ main {
 }
 
 .shortcut-icon {
-    width: 48px;
-    height: 48px;
     background-color: var(--icon-bg);
     border-radius: 8px;
     margin-bottom: 8px;
@@ -62,7 +64,6 @@ main {
 
 .shortcut-title {
     color: var(--text-color);
-    font-size: 0.8rem;
     text-align: center;
     width: 100%;
     overflow: hidden;
@@ -74,26 +75,34 @@ main {
     fill: currentColor;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 8px;
 }
 
-.icon~a {
-    color: #2563EB;
+.card-item-link {
     transition-property: all;
     transition-duration: 150ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
-    font-size: 1rem;
+    margin-left: 8px;
 }
 
-.icon~a:hover {
+.card-item-link:hover {
     color: #DC2626;
     text-decoration: underline;
+}
+
+.size-14 {
+    width: 14px;
+    height: 14px;
 }
 
 .size-16 {
     width: 16px;
     height: 16px;
+}
+
+.size-18 {
+    width: 18px;
+    height: 18px;
 }
 
 .size-20 {
@@ -106,9 +115,23 @@ main {
     height: 24px;
 }
 
+.size-48 {
+    width: 48px;
+    height: 48px;
+}
+
+.size-100 {
+    width: 100px;
+    height: 100px;
+}
+
 .size-full {
     width: 100%;
     height: 100%;
+}
+
+.svg-color-gray {
+    fill: #8e8d8d;
 }
 
 .icon-large~a {
@@ -132,18 +155,19 @@ main {
 }
 
 .card-title {
+    color: chocolate;
     /* user-select: none; */
     display: flex;
     align-items: center;
     /* border-bottom: 1px solid #e0e0e0; */
-    padding: 16px 16px 8px 8px;
+    padding: 16px 8px 8px 8px;
     font-size: 1.5rem;
     font-weight: 700;
 }
 
 .card-content {
     padding: 16px;
-    padding-top: 8px;
+    padding-top: 0px;
 }
 
 .card-item {
@@ -166,8 +190,6 @@ main {
 
 .checkboxWithLabel input {
     margin-right: 10px;
-    width: 18px;
-    height: 18px;
     cursor: pointer;
 }
 
@@ -175,12 +197,17 @@ main {
     color: #c6c6c6;
 }
 
-.text {
-    font-weight: 500;
+.text-small {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.text-normal {
+    font-size: 1rem;
 }
 
 .text-large {
-    font-size: larger;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 
@@ -221,7 +248,7 @@ main {
     justify-content: center;
     border: none;
     outline: none;
-    padding: 0px 8px;
+    padding: 0px 4px;
     background-color: transparent;
     user-select: none;
     cursor: pointer;

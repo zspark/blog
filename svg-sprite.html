@@ -4,15 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SVG Sprite</title>
-    <style>
-        .icon {
-            width: 100px;
-            height: 100px;
-            fill: currentColor;
-            display: inline-block;
-            vertical-align: middle;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -142,7 +134,7 @@
         const _elem = document.getElementById("svgs");
         let _str = "";
         _DATA.forEach(id => {
-            _str += `<svg class="icon">
+            _str += `<svg class="icon size-100">
     <use href="./icons.svg#${id}" xlink:href="./icons.svg#${id}"></use>
 </svg>`
         });

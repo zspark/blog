@@ -102,8 +102,8 @@
     function _createCB(id, data) {
         const isLarge = data.large ?? false;
         return `<label id="${id}" class="checkboxWithLabel">
-    <input type="checkbox" name="${id}" ${data.checked ? 'checked' : ''}/>
-    <div class="${isLarge ? 'text text-large' : 'text'}"> ${data.caption} </div>
+    <input type="checkbox" class="size-18" name="${id}" ${data.checked ? 'checked' : ''}/>
+    <div class="${isLarge ? 'text-large' : 'text-normal'}"> ${data.caption} </div>
 </label>`;
     }
 

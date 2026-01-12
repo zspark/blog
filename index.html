@@ -17,11 +17,10 @@
 
 <body style="background-color: #24292e;">
     <main>
-        <div id="shortcutContainer" class="shortcut-container">
-        </div>
-
+        <div id="shortcutContainer" class="shortcut-container"></div>
         <div id="cardContainer" class="card-container"> </div>
     </main>
+    <footer style="height: 20px;"></footer>
 </body>
 
 <script>
@@ -189,12 +188,12 @@
         const _hasIcon = item.icon !== undefined;
         const _icon = _hasIcon ? item.icon : "icon-letter-" + item.name.charAt(0).toLowerCase();
         return `<a href="${item.url}" class="shortcut-item" target="_blank">
-    <div class="shortcut-icon">
+    <div class="shortcut-icon size-48">
         <svg class="icon size-full">
             <use href="./icons.svg#${_icon}" xlink:href="./icons.svg#${_icon}"></use>
         </svg>
     </div>
-    <div class="shortcut-title">${item.name}</div>
+    <div class="shortcut-title text-small">${item.name}</div>
 </a>`;
     }
 
@@ -206,7 +205,7 @@
     <svg class="icon ${item.large ? "size-20" : "size-16"}">
         <use href="./icons.svg#${_icon}" xlink:href="./icons.svg#${_icon}"></use>
     </svg>
-    <a href="${item.url}" target="_blank">${item.name}</a>
+    <a class="card-item-link ${item.large ? "text-large" : "text-normal"}" href="${item.url}" target="_blank">${item.name}</a>
 </div>`;
         }
 
