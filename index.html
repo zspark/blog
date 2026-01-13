@@ -21,7 +21,7 @@
     <footer class="footer"></footer>
     <div id="searchContainer" class="search-container">
         <div class="search size-full">
-            <svg class="icon size-50">
+            <svg class="icon size-40">
                 <use href="./icons.svg#icon-google-chrome" xlink:href="./icons.svg#icon-google-chrome">
                 </use>
             </svg>
@@ -239,6 +239,82 @@
         item.style.gridRowEnd = "span " + rowSpan;
     }
 
+    function _searchGoogle(query) {
+        const ipRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+        const urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(:\d+)?(\/\S*)?$/i;
+
+        let _target = "";
+        if (ipRegex.test(query)) {
+            _target = query.startsWith('http') ? query : `http://${query}`;
+        } else if (urlRegex.test(query)) {
+            _target = query.match(/^https?:\/\//i) ? query : `http://${query}`;
+        } else {
+            _target = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+        window.open(_target, '_blank');
+    }
+
+    function _setupSearch() {
+        const _searchContainer = document.getElementById('searchContainer');
+        const _inputElem = document.getElementById('searchInput');
+        const _MAX_CACHE_SIZE = 10;
+        const _SPLITER = "!9!";
+        const _CACHE_NAME_ = "jcblog";
+        const _searchHistoryData = localStorage.getItem(_CACHE_NAME_)?.split(_SPLITER) ?? [];
+        let _historyIndex = - 1;// point to newest;
+
+        _inputElem.addEventListener('keydown', (event) => {
+            // console.log("_inputElem", event.key);
+            switch (event.key) {
+                case "ArrowDown":
+                    _inputElem.value = _searchHistoryData.at(_historyIndex) ?? _inputElem.value;
+                    _historyIndex++;
+                    break;
+                case "ArrowUp":
+                    _inputElem.value = _searchHistoryData.at(_historyIndex) ?? _inputElem.value;
+                    _historyIndex--;
+                    break;
+                case "Enter":
+                    const query = _inputElem.value.trim();
+                    if (query) {
+                        _searchGoogle(query);
+                        const _index = _searchHistoryData.indexOf(query);
+                        if (_index < 0) {
+                            _searchHistoryData.push(query);
+                            if (_searchHistoryData.length > _MAX_CACHE_SIZE) {
+                                _searchHistoryData.shift();
+                            }
+                            _historyIndex = - 1;
+                            localStorage.setItem(_CACHE_NAME_, _searchHistoryData.join(_SPLITER));
+                        } else {
+                            _historyIndex = _index;
+                        }
+                    }
+                case "Escape":
+                    _inputElem.value = '';
+                    _searchContainer.removeAttribute("focused");
+                    break;
+                default:
+            }
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                const _size = _searchHistoryData.length;
+                _historyIndex = ((_historyIndex % _size) + _size) % _size;// loop index;
+                event.preventDefault();
+            }
+            event.stopImmediatePropagation();
+        });
+        document.body.addEventListener("keydown", (event) => {
+            // console.log("body", event.key);
+            if (event.key === 'Enter') {
+                _searchContainer.setAttribute("focused", "");
+                _inputElem.focus();
+            } else if (event.key == "Escape") {
+                _inputElem.value = '';
+                _searchContainer.removeAttribute("focused");
+            }
+        });
+    }
+
     window.onload = () => {
         let _str = "";
         for (const item of _shortcutList) {
@@ -255,45 +331,7 @@
         const allItems = document.querySelectorAll(".card");
         allItems.forEach(_calcCardHeight);
 
-
-        const inputC = document.getElementById('searchContainer');
-        const input = document.getElementById('searchInput');
-        input.addEventListener('keydown', (event) => {
-            // console.log("input", event.key);
-            if (event.key === 'Enter') {
-                const query = input.value.trim();
-                if (query) {
-                    const ipRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
-                    const urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(:\d+)?(\/\S*)?$/i;
-
-                    if (ipRegex.test(query)) {
-                        const target = query.startsWith('http') ? query : `http://${query}`;
-                        window.open(target, '_blank');
-                    } else if (urlRegex.test(query)) {
-                        const target = query.match(/^https?:\/\//i) ? query : `http://${query}`;
-                        window.open(target, '_blank');
-                    } else {
-                        const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                        window.open(googleUrl, '_blank');
-                    }
-                }
-            }
-            event.stopImmediatePropagation();
-            if (event.key === 'Enter' || event.key == "Escape") {
-                input.value = '';
-                inputC.removeAttribute("focused");
-            }
-        });
-        document.body.addEventListener("keydown", (event) => {
-            // console.log("body", event.key);
-            if (event.key === 'Enter') {
-                inputC.setAttribute("focused", "");
-                input.focus();
-            } else if (event.key == "Escape") {
-                input.value = '';
-                inputC.removeAttribute("focused");
-            }
-        });
+        // _setupSearch();
     };
 
 </script>
