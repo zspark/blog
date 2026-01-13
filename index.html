@@ -15,12 +15,10 @@
 
 <!-- <body style="background-image: url('./bg.jpg'); background-repeat: repeat; background-size: cover; background-attachment: fixed;"> -->
 
-<body style="background-color: #24292e;">
-    <main>
-        <div id="shortcutContainer" class="shortcut-container"></div>
-        <div id="cardContainer" class="card-container"> </div>
-    </main>
-    <footer style="height: 20px;"></footer>
+<body>
+    <div id="shortcutContainer" class="shortcut-container"></div>
+    <div id="cardContainer" class="card-container"> </div>
+    <footer class="footer"></footer>
 </body>
 
 <script>
@@ -48,7 +46,7 @@
             color: "#ebf9ff",
             data: [
                 { url: "https://www.desmos.com/calculator", name: "Desmos Calculator", icon: "icon-desmos", large: true },
-                { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "LaTeX Symbols", icon: "icon-pdf", large: true },
+                { url: "https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf", name: "[PDF] LaTeX Symbols", icon: "icon-pdf", large: true },
                 { url: "https://en.wikibooks.org/wiki/LaTeX", name: "LaTeX Wikibooks", icon: "icon-latex", large: true },
                 { url: "https://latexeditor.lagrida.com/", name: "LaTeX Editor", icon: "icon-latex", large: true },
                 { url: "https://www.tablesgenerator.com/", name: "Tables Generator", icon: "icon-tablesgenerator", large: true },
@@ -64,8 +62,6 @@
             icon: "icon-card",
             color: "#ffebf7",
             data: [
-                { url: "./softwares.html", name: "Software Installments", icon: "icon-setup" },
-                { url: "./configurations.html", name: "Configurations", icon: "icon-settings" },
                 { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "icon-stack-overflow" },
                 { url: "https://stackexchange.com", name: "Stack Exchange", icon: "icon-stack-exchange" },
                 { url: "https://gitlab.com", name: "GitLab", icon: "icon-gitlab" },
@@ -80,12 +76,14 @@
                 { url: "https://www.wolframalpha.com", name: "Wolfram Alpha", icon: "icon-wolfram-alpha" },
                 { url: "https://mathworld.wolfram.com/", name: "Wolfram MathWorld", icon: "icon-wolfram-alpha" },
                 { url: "https://scholar.google.com/", name: "Google Scholar", icon: "icon-google-scholar" },
-                { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "Method of Separating Axes", icon: "icon-pdf" },
+                { url: "http://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf", name: "[PDF] Method of Separating Axes", icon: "icon-pdf" },
                 { url: "https://simplemde.com/", name: "SimpleMDE" },
                 { url: "https://wjakob.github.io/nori/", name: "Nori Renderer" },
                 { url: "https://lil-gui.georgealways.com/examples/basic/index.html", name: "Lil GUI Basic Example", },
                 { url: "https://cowboyprogramming.com/", name: "Cowboy Programming" },
                 { url: "https://developer.mozilla.org", name: "MDN Web Docs", icon: "icon-MDN" },
+                { url: "./softwares.html", name: "Software Installments", icon: "icon-setup" },
+                { url: "./configurations.html", name: "Configurations", icon: "icon-settings" },
             ]
         }, {
             name: "VIDEO & AUDIO",
@@ -173,9 +171,9 @@
                 { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
                 { url: "https://fontawesome.com/", name: "Font Awesome", icon: "icon-font-awesome" },
                 { url: "https://github.com/notopsee/Microsoft-Segoe-UI-Emoji-SVG-Icons", name: "Segoe UI Emoji SVG Icons", icon: "icon-heart" },
-                { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion Student Home", icon: "icon-AUT-new", large: true },
-                { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "Scholarship", icon: "icon-AUT-new", large: true },
-                { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "MCIS", icon: "icon-AUT-new" },
+                { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion Student Home", large: true },
+                { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "Scholarship", large: true },
+                { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "MCIS", },
                 { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
                 { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
                 { url: "https://exploring-data.com/", name: "Exploring Data" },
@@ -202,7 +200,7 @@
             const _hasIcon = item.icon !== undefined;
             const _icon = _hasIcon ? item.icon : "icon-letter-" + item.name.charAt(0).toLowerCase();
             return `<div class="card-item">
-    <svg class="icon ${item.large ? "size-20" : "size-16"}">
+    <svg class="icon size-18">
         <use href="./icons.svg#${_icon}" xlink:href="./icons.svg#${_icon}"></use>
     </svg>
     <a class="card-item-link ${item.large ? "text-large" : "text-normal"}" href="${item.url}" target="_blank">${item.name}</a>
@@ -215,12 +213,7 @@
         }
         return `<div class="card">
     <div class="size-full" style="background-color:${card.color};">
-        <div class="card-title">
-            <svg class="icon size-24">
-                <use href="./icons.svg#${card.icon}" xlink:href="./icons.svg#${card.icon}"></use>
-            </svg>
-            ${card.name}
-        </div>
+        <div class="card-title">${card.name}</div>
         <div class="card-content">${itemHTML}</div>
     </div>
 </div>`;

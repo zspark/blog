@@ -14,53 +14,49 @@
 </head>
 
 <body>
-    <main>
-        <div style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
-            <div id="mainDiv" class="list-container"> </div>
-            <div class="textarea-outer">
-                <div class="textarea-head">
-                    <div class="textarea-caption">
-                        commands of powershell
-                    </div>
-                    <div class="textarea-buttons">
-                        <div role="button" onclick="switchSilent(this)" marked>
-                            <span>SILENT ON</span>
-                        </div>
-                        <div role="button" onclick="clearAll()">
-                            <span>CLEAR</span>
-                        </div>
-                        <div role="button" onclick="copyToClipboard()">
-                            <span>COPY</span>
-                        </div>
-                    </div>
+    <div id="mainDiv" class="list-container"> </div>
+    <div class="textarea-outer">
+        <div class="textarea-head">
+            <div class="textarea-caption">
+                <!-- commands of powershell -->
+            </div>
+            <div class="textarea-buttons">
+                <div role="button" onclick="switchSilent(this)" marked>
+                    <span>SILENT ON</span>
                 </div>
-                <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
-                    placeholder="select software above ..."></textarea>
+                <div role="button" onclick="clearAll()">
+                    <span>CLEAR</span>
+                </div>
+                <div role="button" onclick="copyToClipboard()">
+                    <span>COPY</span>
+                </div>
             </div>
         </div>
-
-        <div>
-            <ul>
-                <li OhMyPosh><b>OhMyPosh</b> is a plugin of PowerShell, install PS first. </li>
-                <li Neovim><b>Neovim</b> plugin repository (private):
-                    <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon size-16">
-                            <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
-                            </use>
-                        </svg></a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
-                </li>
-                <li Neovim><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please install
-                    cpp
-                    compiler
-                    first:
-                    <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon size-16">
-                            <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
-                            </use>
-                        </svg></a>
-                </li>
-            </ul>
-        </div>
-    </main>
-
+        <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
+            placeholder="select software above ..."></textarea>
+    </div>
+    <div>
+        <ul>
+            <li OhMyPosh><b>OhMyPosh</b> is a plugin of PowerShell, install PS first. </li>
+            <li Neovim><b>Neovim</b> plugin repository (private):
+                <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon size-16">
+                        <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
+                        </use>
+                    </svg>
+                </a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
+            </li>
+            <li Neovim><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please install
+                cpp
+                compiler
+                first:
+                <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon size-16">
+                        <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
+                        </use>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </div>
 </body>
 
 <script>

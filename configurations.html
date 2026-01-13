@@ -14,45 +14,41 @@
 </head>
 
 <body>
-    <main>
-        <div style="display: flex; gap: 20px; flex-direction: column;">
-            <div class="textarea-outer">
-                <div class="textarea-head">
-                    <div class="textarea-caption">
-                        $HOME/.gitignore
-                    </div>
-                    <div class="textarea-buttons">
-                        <div role="button" onclick="copyToClipboard('gitconfig')">
-                            <span>COPY</span>
-                        </div>
-                        <div role="button" onclick="downloadText('gitconfig', 'gitconfig.txt')">
-                            <span>DLOWNLOAD</span>
-                        </div>
-                    </div>
-                </div>
-                <textarea class="textarea" spellcheck="false" id="gitconfig" oninput="resizeTextarea(this)"
-                    placeholder="select software above ..."></textarea>
+    <div class="textarea-outer">
+        <div class="textarea-head">
+            <div class="textarea-caption">
+                <!-- $HOME/.gitignore -->
             </div>
-            <div class="textarea-outer">
-                <div class="textarea-head">
-                    <div class="textarea-caption">
-                        $HOME/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
-                    </div>
-                    <div class="textarea-buttons">
-                        <div role="button" onclick="copyToClipboard('powershell_profile')">
-                            <span>COPY</span>
-                        </div>
-                        <div role="button"
-                            onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.txt')">
-                            <span>DLOWNLOAD</span>
-                        </div>
-                    </div>
+            <div class="textarea-buttons">
+                <div role="button" onclick="copyToClipboard('gitconfig')">
+                    <span>COPY</span>
                 </div>
-                <textarea class="textarea" spellcheck="false" id="powershell_profile" oninput="resizeTextarea(this)"
-                    placeholder="select software above ..."></textarea>
+                <div role="button" onclick="downloadText('gitconfig', 'gitconfig.txt')">
+                    <span>DLOWNLOAD</span>
+                </div>
             </div>
         </div>
-    </main>
+        <textarea class="textarea" spellcheck="false" id="gitconfig" oninput="resizeTextarea(this)"
+            placeholder="select software above ..."></textarea>
+    </div>
+    <div style="height: 20px;"></div>
+    <div class="textarea-outer">
+        <div class="textarea-head">
+            <div class="textarea-caption">
+                <!-- $HOME/Documents/PowerShell/Microsoft.PowerShell_profile.ps1 -->
+            </div>
+            <div class="textarea-buttons">
+                <div role="button" onclick="copyToClipboard('powershell_profile')">
+                    <span>COPY</span>
+                </div>
+                <div role="button" onclick="downloadText('powershell_profile', 'Microsoft.PowerShell_profile.txt')">
+                    <span>DLOWNLOAD</span>
+                </div>
+            </div>
+        </div>
+        <textarea class="textarea" spellcheck="false" id="powershell_profile" oninput="resizeTextarea(this)"
+            placeholder="select software above ..."></textarea>
+    </div>
 </body>
 
 <script>

@@ -1,11 +1,13 @@
 :root {
-    --shortcut-bg: rgba(255, 255, 255, 0.1);
-    --shortcut-hover-bg: rgba(255, 255, 255, 0.2);
-    --text-color: #fbfbfc;
+    --text-color-light: #fbfbfc;
+    --text-color-dark: #333333;
     --icon-bg: #2b2a33;
+    --shortcut-bg: #1b1f23;
+    --html-bg: #24292e;
     --shortcut-item-width: 90px;
     --list-item-width: 175px;
     --card-min-width: 280px;
+    --gap-size: 10px;
 }
 
 html {
@@ -13,30 +15,37 @@ html {
 }
 
 body {
-    margin: 0px;
+    background-color: var(--html-bg);
+    /* background: linear-gradient(5deg, var(--html-bg) 20%, #c3cfe2 100%); */
+    color: var(--text-color-light);
 }
 
-main {
-    margin: 20px;
+a {
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
 }
+
 
 @media screen and (max-width: 767px) {
     html {
-        font-size: 24px;
+        font-size: calc(var(--gap-size)*2);
     }
 
-    main {
+    body {
         margin: 0px;
     }
 }
 
 .shortcut-container {
+    /* background-image: url('./bg2.jpg'); */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--shortcut-item-width), var(--shortcut-item-width)));
     gap: 4px;
-    padding: 10px;
-    /* background-color: #3f3c4e; */
-    margin-bottom: 20px;
+    padding: var(--gap-size);
+    background-color: var(--shortcut-bg);
+    margin-bottom: var(--gap-size);
 }
 
 .shortcut-item {
@@ -51,7 +60,7 @@ main {
 }
 
 .shortcut-item:hover {
-    background-color: var(--shortcut-hover-bg);
+    background-color: #394048;
 }
 
 .shortcut-icon {
@@ -63,7 +72,7 @@ main {
 }
 
 .shortcut-title {
-    color: var(--text-color);
+    color: var(--text-color-light);
     text-align: center;
     width: 100%;
     overflow: hidden;
@@ -78,15 +87,12 @@ main {
 }
 
 .card-item-link {
-    transition-property: all;
-    transition-duration: 150ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
+    color: var(--text-color-dark);
     margin-left: 8px;
 }
 
 .card-item-link:hover {
-    color: #DC2626;
+    /* color: blue; */
     text-decoration: underline;
 }
 
@@ -134,16 +140,10 @@ main {
     fill: #8e8d8d;
 }
 
-.icon-large~a {
-    color: #0029cc;
-    font-size: larger;
-    font-weight: 600;
-}
-
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
-    grid-gap: 10px;
+    grid-gap: var(--gap-size);
     grid-auto-rows: 1px;
 }
 
@@ -155,12 +155,12 @@ main {
 }
 
 .card-title {
-    color: chocolate;
+    color: var(--text-color-dark);
     /* user-select: none; */
     display: flex;
     align-items: center;
     /* border-bottom: 1px solid #e0e0e0; */
-    padding: 16px 8px 8px 8px;
+    padding: 16px 16px 8px 16px;
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -184,12 +184,11 @@ main {
 }
 
 .checkboxWithLabel:hover {
-    color: #DC2626;
     text-decoration: underline;
 }
 
 .checkboxWithLabel input {
-    margin-right: 10px;
+    margin-right: var(--gap-size);
     cursor: pointer;
 }
 
@@ -216,12 +215,13 @@ main {
     width: 100%;
     border: 1px solid #d1d5da;
     border-radius: 6px;
-    background-color: #f6f8fa;
+    background-color: #e9f4fe;
+    box-sizing: border-box;
 }
 
 .textarea-outer:has(.textarea:focus) {
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
+    box-shadow: 0 0 0 3px rgba(224, 146, 20, 0.975);
 }
 
 .textarea-head {
@@ -234,6 +234,7 @@ main {
 .textarea-caption,
 .textarea-buttons {
     display: flex;
+    white-space: nowrap;
 }
 
 .textarea-caption {
@@ -297,5 +298,10 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(var(--list-item-width), var(--list-item-width)));
     gap: 4px;
     width: 100%;
-    padding: 20px;
+    padding: calc(var(--gap-size)*2);
+    box-sizing: border-box;
+}
+
+.footer {
+    height: 20px;
 }
