@@ -14,48 +14,78 @@
 </head>
 
 <body>
-    <div id="mainDiv" class="list-container"> </div>
-    <div class="textarea-outer">
-        <div class="textarea-head">
-            <div class="textarea-caption">
-                <!-- commands of powershell -->
+    <div class="tabs size-full">
+        <input type="radio" name="mytabs" id="tab1" onchange="refreshOutput()" checked>
+        <label for="tab1">SOFTWARE</label>
+        <div class="tabs-content">
+            <div id="mainDiv" class="list-container"> </div>
+            <div class="textarea-outer">
+                <div class="textarea-head">
+                    <div class="textarea-caption">
+                        <!-- commands of powershell -->
+                    </div>
+                    <div class="textarea-buttons">
+                        <div role="button" onclick="switchSilent(this)" marked>
+                            <span>SILENT ON</span>
+                        </div>
+                        <div role="button" onclick="clearAll()">
+                            <span>CLEAR</span>
+                        </div>
+                        <div role="button" onclick="copyToClipboard()">
+                            <span>COPY</span>
+                        </div>
+                    </div>
+                </div>
+                <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
+                    placeholder="select software above ..."></textarea>
             </div>
-            <div class="textarea-buttons">
-                <div role="button" onclick="switchSilent(this)" marked>
-                    <span>SILENT ON</span>
-                </div>
-                <div role="button" onclick="clearAll()">
-                    <span>CLEAR</span>
-                </div>
-                <div role="button" onclick="copyToClipboard()">
-                    <span>COPY</span>
-                </div>
+            <div>
+                <ul>
+                    <li OhMyPosh><b>OhMyPosh</b> is a plugin of PowerShell, install PS first. </li>
+                    <li Neovim><b>Neovim</b> plugin repository (private):
+                        <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon size-16">
+                                <use href="./icons.svg#icon-external-link-1"
+                                    xlink:href="./icons.svg#icon-external-link-1">
+                                </use>
+                            </svg>
+                        </a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
+                    </li>
+                    <li Neovim><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please
+                        install
+                        cpp
+                        compiler
+                        first:
+                        <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon size-16">
+                                <use href="./icons.svg#icon-external-link-1"
+                                    xlink:href="./icons.svg#icon-external-link-1">
+                                </use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <textarea class="textarea" spellcheck="false" id="outputElem" oninput="autoResize(this)"
-            placeholder="select software above ..."></textarea>
-    </div>
-    <div>
-        <ul>
-            <li OhMyPosh><b>OhMyPosh</b> is a plugin of PowerShell, install PS first. </li>
-            <li Neovim><b>Neovim</b> plugin repository (private):
-                <a href="https://github.com/zspark/nvim" target="_blank">nvim<svg class="icon size-16">
-                        <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
-                        </use>
-                    </svg>
-                </a>After downloading, place it in: <code>$HOME\AppData\Local\(<b>nvim</b>)</code>
-            </li>
-            <li Neovim><b>Neovim</b> plugin system requires downloading and compiling C++ code. Please install
-                cpp
-                compiler
-                first:
-                <a target="_blank" href="https://jmeubank.github.io/tdm-gcc/">TDM-gcc<svg class="icon size-16">
-                        <use href="./icons.svg#icon-external-link-1" xlink:href="./icons.svg#icon-external-link-1">
-                        </use>
-                    </svg>
-                </a>
-            </li>
-        </ul>
+
+        <input type="radio" name="mytabs" id="tab2" onchange="refreshOutput()">
+        <label for="tab2">SYSTEM</label>
+        <div class="tabs-content">
+            <div id="system">
+                <ul>
+                    <li>During system installation, press <code>Shift+F10</code> when connecting to Wi-Fi, enter
+                        <code>oobe\bypassnro</code>, and then restart.
+                    </li>
+                    <li>This will display the <code>"I don't have an internet connection"</code> option.</li>
+                    <li>Enter the product key: The following are generic Windows product keys:</li>
+                    <ul>
+                        <li>Professional: VK7JG-NPHTM-C97JM-9MPGT-3V66T</li>
+                        <li>Home: YTMG3-N6DKC-DKB77-7M9GH-8HVX7</li>
+                        <li>Enterprise: XGVPP-NMH47-7TTHJ-W3FW7-8HV2C</li>
+                        <li>Education: YNMGQ-8RYV3-4PGQ3-C8XTP-7CFBY</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+
     </div>
 </body>
 
@@ -78,7 +108,8 @@
         "LazyGit": { caption: "LazyGit", wingetId: "JesseDuffield.lazygit" },
         "OBS_Studio": { caption: "OBS Studio", wingetId: "OBSProject.OBSStudio", large: true, },
         "Everything": { caption: "Everything", wingetId: "voidtools.Everything" },
-        "SumatraPDF": { caption: "SumatraPDF", wingetId: "SumatraPDF.SumatraPDF", large: true },
+        "SumatraPDF": { caption: "SumatraPDF", wingetId: "SumatraPDF.SumatraPDF", large: true, checked: true },
+        "PDFgear": { caption: "PDFgear", wingetId: "PDFgear.PDFgear" },
         "OhMyPosh": { caption: "OhMyPosh", wingetId: "JanDeDobbeleer.OhMyPosh" },
         "NotepadPlusPlus": { caption: "Notepad++", wingetId: "Notepad++.Notepad++" },
         "VLC": { caption: "VLC", wingetId: "VideoLAN.VLC", large: true, checked: true },

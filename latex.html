@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en_US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="author" content="Jerry Chaos" />
+    <meta name="applicable-device" content="pc,pad,mobile" />
+    <meta name="referrer" content="always" />
+    <title>Latex Notes</title>
+    <link href="./favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="abcde" class="abcc"></div>
+
+    <div class="blur-overlay size-full"></div>
+</body>
+
+<script>
+    console.log("Hello Jerry!");
+
+    function copyToClipboard() {
+        outputElem.select();
+        outputElem.setSelectionRange(0, 99999); // For mobile devices
+        document.execCommand("copy");
+    }
+
+    function autoResize(elem) {
+        const _parentElem = elem.parentElement;
+        _parentElem.style.height = "auto";
+        elem.style.height = "auto";
+
+        const _height = elem.scrollHeight;
+        _parentElem.style.height = _height + 18 + 'px';
+        elem.style.height = _height + 'px';
+    }
+
+    function _calcCardHeight(item) {
+        const grid = document.querySelector("#abcde");
+        const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+        const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+        let contentHeight = item.querySelector('pre').getBoundingClientRect().height + 40;
+        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = "span " + rowSpan;
+    }
+
+    function sss(str) {
+        //     return `<div class="codeareaAAAA size-full">
+        // <pre><code>${str}</code></pre>
+        // </div>`;
+        return `<div class="textarea-outer">
+    <div class="textarea-head">
+        <div class="textarea-caption">
+            <!-- commands of powershell -->
+        </div>
+        <div class="textarea-buttons">
+            <div role="button" onclick="copyToClipboard()">
+                <span>COPY</span>
+            </div>
+        </div>
+    </div>
+    <textarea class="textarea" spellcheck="false" oninput="autoResize(this)"></textarea>
+</div>`;
+
+
+    }
+
+    const _DATA = [
+        {
+            desc: "",
+            content: `\\begin{table}
+    \\centering
+    \\begin{tabular}{l|l}
+        OS & library \\\\
+        \\hline
+        AAAA & BBBB
+    \\end{tabular}
+    \\caption{CCCCC}
+\\end{table}`
+        }, {
+            desc: "",
+            content: `\\begin{figure}[H]
+    \\centering
+    \\includegraphics[width=0.5\\textwidth]{"AAAApng"}
+    \\caption{BBBBBB}
+\\end{figure}`
+        }, {
+            desc: "",
+            content: `\\begin{figure}[H]
+    \\centering
+    \\subfigure{\includegraphics[width=0.45\\textwidth]{AAjpg}} 
+    \\subfigure{\includegraphics[width=0.45\\textwidth]{BBjpg}}
+    \\caption{CCCCCCC}
+\\end{figure}`
+        }, {
+            desc: "",
+            content: `\\begin{quote}
+    AAAAAA
+    \\hspace{1em plus 1fill}--- BBBBB
+\\end{quote}`
+        }, {
+            desc: "",
+            content: `\\lim\\limits_{XXXX \\to AAAAA}`
+        },
+    ]
+
+    window.onload = () => {
+        const fragment = document.createElement("div");
+
+        let _outStr = "";
+        _DATA.forEach((data) => {
+            _outStr += sss(data.content);
+            fragment.innerHTML = _outStr;
+            fragment.firstChild.lastElementChild.textContent = data.content;
+            document.getElementById("abcde").append(fragment.firstChild);
+        })
+
+
+
+        // const allItems = document.querySelectorAll(".codeareaAAAA");
+        // allItems.forEach(_calcCardHeight);
+    };
+
+</script>
+
+</html>
