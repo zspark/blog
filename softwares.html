@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <div class="tabs size-full">
-        <input type="radio" name="mytabs" id="tab1" onchange="refreshOutput()" checked>
-        <label for="tab1">SOFTWARE</label>
+    <div class="tabs">
+        <input class="tabs-radio" type="radio" name="mytabs" id="tab1" onchange="refreshOutput()" checked>
+        <label class="tabs-label text-normal padding-8-20" for="tab1">SOFTWARE</label>
         <div class="tabs-content">
             <div id="mainDiv" class="list-container"> </div>
             <div class="textarea-outer">
@@ -64,10 +64,13 @@
                     </li>
                 </ul>
             </div>
+
+
+
         </div>
 
-        <input type="radio" name="mytabs" id="tab2" onchange="refreshOutput()">
-        <label for="tab2">SYSTEM</label>
+        <input class="tabs-radio" type="radio" name="mytabs" id="tab2" onchange="refreshOutput()">
+        <label class="tabs-label text-normal padding-8-20" for="tab2">SYSTEM</label>
         <div class="tabs-content">
             <div id="system">
                 <ul>
@@ -120,7 +123,10 @@
         "TeXstudio": { caption: "TeXstudio", wingetId: "TeXstudio.TeXstudio", large: true, checked: true },
         "PowerToys": { caption: "PowerToys", wingetId: "Microsoft.PowerToys" },
         "foobar2000": { caption: "foobar2000", wingetId: "PeterPawlowski.foobar2000" },
-        "soundly": { caption: "soundly", wingetId: "Soundly.Soundly" },
+        "Soundly": { caption: "Soundly", wingetId: "Soundly.Soundly" },
+        "Eagle": { caption: "Eagle", wingetId: "ogdesign.Eagle" },
+        "Inkscape": { caption: "Inkscape", wingetId: "Inkscape.Inkscape" },
+        "Krita": { caption: "Krita", wingetId: "KDE.Krita" },
     };
 
     let silentMode = true;
@@ -130,7 +136,7 @@
         const isLarge = data.large ?? false;
         return `<label id="${id}" class="checkboxWithLabel">
     <input type="checkbox" class="size-18" name="${id}" ${data.checked ? 'checked' : ''}/>
-    <div class="${isLarge ? 'text-large' : 'text-normal'}"> ${data.caption} </div>
+    <span class="${isLarge ? 'text-large' : 'text-normal'}"> ${data.caption} </span>
 </label>`;
     }
 

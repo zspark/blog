@@ -52,16 +52,6 @@
         // <pre><code>${str}</code></pre>
         // </div>`;
         return `<div class="textarea-outer">
-    <div class="textarea-head">
-        <div class="textarea-caption">
-            <!-- commands of powershell -->
-        </div>
-        <div class="textarea-buttons">
-            <div role="button" onclick="copyToClipboard()">
-                <span>COPY</span>
-            </div>
-        </div>
-    </div>
     <textarea class="textarea" spellcheck="false" oninput="autoResize(this)"></textarea>
 </div>`;
 
@@ -91,7 +81,7 @@
             desc: "",
             content: `\\begin{figure}[H]
     \\centering
-    \\subfigure{\includegraphics[width=0.45\\textwidth]{AAjpg}} 
+    \\subfigure{\includegraphics[width=0.45\\textwidth]{AAjpg}}
     \\subfigure{\includegraphics[width=0.45\\textwidth]{BBjpg}}
     \\caption{CCCCCCC}
 \\end{figure}`
