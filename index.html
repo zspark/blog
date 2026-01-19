@@ -171,6 +171,19 @@
                 { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
             ]
         }, {
+            name: "EDUCATION",
+            icon: "icon-card",
+            color: "#ebffee",
+            data: [
+                { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "AUT Arion Student Home", large: true, icon: "icon-redstar" },
+                { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "AUT Scholarship", large: true, icon: "icon-redstar" },
+                { url: "https://library.aut.ac.nz/", name: "AUT Library", icon: "icon-redstar" },
+                { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "Master of Computer and Information Sciences", icon: "icon-redstar" },
+                { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
+                { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
+                { url: "https://carmattu.com/login/?returnUrl=%2fuser%2fprofile%3fCARMA_ID%3db08dca8286221ad5b4e2cdbed40d6ee7", name: "CARMA with AUT CARMA_ID" },
+            ]
+        }, {
             name: "MISC",
             icon: "icon-card",
             color: "#ebffee",
@@ -182,12 +195,6 @@
                 { url: "https://openmoji.org/", name: "OpenMoji", icon: "icon-openmoji" },
                 { url: "https://fontawesome.com/", name: "Font Awesome", icon: "icon-font-awesome" },
                 { url: "https://github.com/notopsee/Microsoft-Segoe-UI-Emoji-SVG-Icons", name: "Segoe UI Emoji SVG Icons", icon: "icon-heart" },
-                { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "AUT Arion Student Home", large: true, icon: "icon-redstar" },
-                { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "AUT Scholarship", large: true, icon: "icon-redstar" },
-                { url: "https://library.aut.ac.nz/", name: "AUT Library", icon: "icon-redstar" },
-                { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "Master of Computer and Information Sciences", icon: "icon-redstar" },
-                { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
-                { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
                 { url: "https://exploring-data.com/", name: "Exploring Data" },
                 { url: "https://www.amytele.net/clientarea.php", name: "AmyTele Services" },
             ]
@@ -318,6 +325,8 @@
     }
 
     window.onload = () => {
+        const params = new URL(window.location.href).searchParams;
+
         let _str = "";
         for (const item of _shortcutList) {
             _str += _createShortcutItem(item);
@@ -326,6 +335,11 @@
 
         let _str2 = "";
         for (const card of _data) {
+            if (!params.has('p')) {
+                if (card.name == "EDUCATION") {
+                    continue;
+                }
+            }
             _str2 += _createCard(card);
         }
         document.getElementById("cardContainer").innerHTML = _str2;
