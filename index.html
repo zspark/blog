@@ -47,10 +47,23 @@
         { url: "https://docs.google.com", name: "Docs", icon: "icon-google-docs" },
         { url: "https://sheets.google.com", name: "Sheets", icon: "icon-google-sheets" },
         { url: "https://github.com", name: "GitHub", icon: "icon-github-blue", large: true },
+        { url: "https://my.aut.ac.nz", name: "My AUT", large: true, icon: "icon-AUT-new" },
     ];
 
     const _data = [
         {
+            name: "AUT",
+            icon: "icon-card",
+            color: "#D2DCB6",
+            data: [
+                { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "Arion", large: true },
+                { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "Scholarship" },
+                { url: "https://canvas.aut.ac.nz/", name: "Canvas", large: true },
+                { url: "https://outlook.office365.com/mail/", name: "Email" },
+                { url: "https://library.aut.ac.nz/", name: "Library" },
+                { url: "https://carmattu.com/login", name: "CARMA" },
+            ]
+        }, {
             name: "TOOLS",
             icon: "icon-card",
             color: "#ebf9ff",
@@ -71,7 +84,7 @@
         }, {
             name: "DEVELOP",
             icon: "icon-card",
-            color: "#ffebf7",
+            color: "#F1F3E0",
             data: [
                 { url: "https://stackoverflow.com", name: "Stack Overflow", icon: "icon-stack-overflow" },
                 { url: "https://stackexchange.com", name: "Stack Exchange", icon: "icon-stack-exchange" },
@@ -114,7 +127,7 @@
         }, {
             name: "SOCIAL",
             icon: "icon-card",
-            color: "#ffebf9",
+            color: "#A1BC98",
             data: [
                 { url: "https://x.com/home", name: "X (Twitter)", icon: "icon-twitter", large: true },
                 { url: "https://www.instagram.com/", name: "Instagram", icon: "icon-instagram-flat" },
@@ -169,19 +182,6 @@
                 { url: "https://store.steampowered.com/", name: "Steam", icon: "icon-steam-1", large: true },
                 { url: "https://www.thewayoftheninja.org/", name: "The Way of the Ninja" },
                 { url: "https://www.wanyiwan.top/home", name: "Alipay mini games", icon: "icon-alipay", large: true },
-            ]
-        }, {
-            name: "EDUCATION",
-            icon: "icon-card",
-            color: "#ebffee",
-            data: [
-                { url: "https://arion.aut.ac.nz/ArionMain/StudentInfo/StudentHome.aspx", name: "AUT Arion Student Home", large: true, icon: "icon-redstar" },
-                { url: "https://aut.communityforce.com/Funds/FundDetails.aspx", name: "AUT Scholarship", large: true, icon: "icon-redstar" },
-                { url: "https://library.aut.ac.nz/", name: "AUT Library", icon: "icon-redstar" },
-                { url: "https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/master-of-computer-and-information-sciences", name: "Master of Computer and Information Sciences", icon: "icon-redstar" },
-                { url: "https://www.unilodge.co.nz/student-accommodation-auckland/mayoral-drive", name: "UniLodge of AUT" },
-                { url: "https://faculty.nuist.edu.cn/laimin/zh_CN/index.htm", name: "NUIST Faculty of Lai Min" },
-                { url: "https://carmattu.com/login/?returnUrl=%2fuser%2fprofile%3fCARMA_ID%3db08dca8286221ad5b4e2cdbed40d6ee7", name: "CARMA with AUT CARMA_ID" },
             ]
         }, {
             name: "MISC",
@@ -325,8 +325,6 @@
     }
 
     window.onload = () => {
-        const params = new URL(window.location.href).searchParams;
-
         let _str = "";
         for (const item of _shortcutList) {
             _str += _createShortcutItem(item);
@@ -335,11 +333,6 @@
 
         let _str2 = "";
         for (const card of _data) {
-            if (!params.has('p')) {
-                if (card.name == "EDUCATION") {
-                    continue;
-                }
-            }
             _str2 += _createCard(card);
         }
         document.getElementById("cardContainer").innerHTML = _str2;
