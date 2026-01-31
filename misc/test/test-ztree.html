@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+    <TITLE> ZTREE DEMO </TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ztree@3.5.24/css/zTreeStyle/zTreeStyle.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ztree@3.5.24/js/jquery.ztree.all.min.js"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+        var zTreeObj;
+        // zTree configuration information, refer to API documentation (setting details)
+        var setting = {
+            data: {
+                /*
+                   simpleData: {
+                      enable: true,
+                      idKey: "id",
+                      pIdKey: "pId",
+                      rootPId: 0
+                   }
+                */
+                keep: {
+                    leaf: true,
+                    parent: true,
+                }
+            },
+            edit: {
+                enable: true
+            },
+            callback: {
+                beforeDrag: myBeforeDrag,
+                beforeDrop: myBeforeDrop,
+                beforeRemove: myBeforeRemove,
+                onDragMove: myOnDragMove,
+                onDrag: myOnDrag,
+                onDrop: myOnDrop,
+                onRemove: zTreeOnRemove
+            }
+
+        };
+
+        // zTree data attributes, refer to the API documentation (treeNode data details)
+        var zNodes = [
+            {
+                displayName: "default NOTEBOOK", id: "default_notebook", name: "default NOTEBOOK (2)", open: false, children: [], isParent: true, isNoteBook: true
+            },
+            {
+                name: "test1", open: true, children: [
+                    { name: "test1_1" }, { name: "test1_2" }], isNoteBook: true
+            },
+            {
+                name: "test2", open: true, children: [
+                    { name: "test2_1" }, { name: "test2_2" }], isNoteBook: true
+            }
+        ];
+        $(document).ready(function () {
+            zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        });
+
+
+        function myOnDrag(event, treeId, treeNodes) {
+            //alert(treeNodes.length);
+        };
+
+        function myBeforeDrag(treeId, treeNodes) {
+            return true;
+        };
+
+        function myOnDragMove(event, treeId, treeNodes) {
+            //console.log(event.target);
+        };
+
+        function myOnDrop(event, treeId, treeNodes, targetNode, moveType) {
+            //alert(treeNodes.length + "," + (targetNode ? (targetNode.tId + ", " + targetNode.name) : "isRoot"));
+        };
+
+        function myBeforeDrop(treeId, treeNodes, targetNode, moveType) {
+            //console.log(targetNode);
+            //console.log(treeId);
+            if (targetNode.isParent) {
+                return true;
+            } else {
+                return moveType != "inner";
+            }
+        };
+
+        function zTreeOnRemove(event, treeId, treeNode) {
+            console.log("event", event);
+        }
+
+        function myBeforeRemove(treeId, treeNode) {
+            //console.log("treeNode:", treeNode);
+            //console.log(treeId);
+            //console.log(treeObj);
+            var treeObj = $.fn.zTree.getZTreeObj(treeId);
+            /// warn first;
+            let _msg = "Are you sure to delete this note?";
+            if (treeNode.isParent) {
+                _msg = "Are you sure to delete this notebook? if yes, all notes under this notebook will be moved to default notebook.";
+            }
+
+            openModalDialog("Warn!!", _msg, () => {
+                console.log("resolve");
+                if (treeNode.isParent) {
+                    /// move all notes to default notebook;
+                    var node = treeObj.getNodeByParam("id", "default_notebook");
+                    if (node) {
+                        while (treeNode.children.length > 0) {
+                            treeObj.moveNode(node, treeNode.children[0], "inner");
+                        }
+                    }
+                }
+                treeObj.removeNode(treeNode, false);
+            }, () => {
+                console.log("reject");
+            });
+
+            return false;
+        }
+
+        function openModalDialog(caption, msg, resolveCB, rejectCB) {
+            $("#dialog-confirm").attr("title", caption);
+            $("#dialog-confirm #custom-dialog-msg").text(msg);
+            $("#dialog-confirm").dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Confirm": function () {
+                        resolveCB();
+                        $(this).dialog("close");
+                    },
+                    Cancel: function () {
+                        rejectCB();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+
+    </SCRIPT>
+</HEAD>
+
+<BODY>
+    <div>
+        <ul id="treeDemo" class="ztree"></ul>
+    </div>
+</BODY>
+
+<div id="dialog-confirm" title="dialog title" hidden>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span
+            id="custom-dialog-msg">dialog msg</span></p>
+</div>
+
+</HTML>
