@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head><meta charset="utf-8">
+    <meta name="description" content="This is a developing blog site.">
+    <meta name="author" content="Jerry Chaos">
+    <title>WebGL Lesson</title>
+    <link href="./src/third-party/dat.gui/dat.gui.css" rel="stylesheet" />
+
+  </head> 
+
+  <body onLoad="OnBodyLoad()">
+    <div id="webgl"></div>
+  </body>
+
+  <script type="text/javascript" src="./src/third-party/dat.gui/dat.gui.min.js"></script>
+  <script type="text/javascript" src="./src/shaders/vs-mvp.js"></script>
+  <script type="text/javascript" src="./src/shaders/fs-pass-color.js"></script>
+  <script type="text/javascript" src="./src/main.js"></script>
+
+  <script>
+    function OnBodyLoad() {
+      if(!Init()){
+        console.error("init failed!");
+        return;
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        Render();
+      };
+
+      animate();
+    }
+  </script>
+
+</html>
