@@ -75,16 +75,6 @@ a {
     vertical-align: middle;
 }
 
-.card-item-link {
-    color: var(--text-color-dark);
-    margin-left: 8px;
-}
-
-.card-item-link:hover {
-    /* color: blue; */
-    text-decoration: underline;
-}
-
 .size-14 {
     width: 14px;
     height: 14px;
@@ -171,8 +161,24 @@ a {
 
 .card-item {
     display: flex;
-    align-items: center;
     margin: 6px 5px;
+    justify-content: space-between;
+}
+
+.card-item-left {
+    display: flex;
+    align-items: center;
+}
+
+.card-item-link {
+    color: var(--text-color-dark);
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.card-item-link:hover {
+    /* color: blue; */
+    text-decoration: underline;
 }
 
 .checkboxWithLabel {
@@ -295,6 +301,22 @@ a {
 .color-red {
     color: #DC2626;
     /* text-decoration: underline; */
+}
+
+.color-black {
+    color: #191919;
+}
+
+.color-green {
+    color: #217844;
+}
+
+.color-gray {
+    color: #7b7b7b;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .list-container {
