@@ -49,6 +49,24 @@
         <textarea class="textarea" spellcheck="false" id="powershell_profile" oninput="resizeTextarea(this)"
             placeholder="select software above ..."></textarea>
     </div>
+    <div style="height: 20px;"></div>
+    <div class="textarea-outer">
+        <div class="textarea-head">
+            <div class="textarea-caption">
+                <!-- $HOME/Documents/PowerShell/Microsoft.PowerShell_profile.ps1 -->
+            </div>
+            <div class="textarea-buttons">
+                <div role="button" onclick="copyToClipboard('')">
+                    <span>COPY</span>
+                </div>
+                <div role="button" onclick="downloadText('', '')">
+                    <span>DLOWNLOAD</span>
+                </div>
+            </div>
+        </div>
+        <textarea class="textarea" spellcheck="false" id="setupSSH" oninput="resizeTextarea(this)"
+            placeholder="select software above ..."></textarea>
+    </div>
 </body>
 
 <script>
@@ -110,6 +128,17 @@ Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
 # Import-Module posh-git
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\zash.omp.json" | Invoke-Expression
 `;
+
+    const CC = `# how to setup SSH server on Windows and edit files on Linux
+# 1-1) on windows terminal (powershell), this step might take a while to execute:
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+# 1-2) start up SSH server:
+Start-Service sshd
+# 1-3) recommended. (let firewall pass though)
+New-NetFirewallRule -Name sshd -DisplayName "OpenSSH Server" -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+# 2-1) on Linux terminal: (-v for verbose output)
+ssh -v your_windows_username@192.168.x,y
+`;
     function copyToClipboard(elementId) {
         var copyText = document.getElementById(elementId);
         copyText.select();
@@ -157,6 +186,11 @@ Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
         if (el2) {
             el2.innerHTML = BB;
             resizeTextarea(el2);
+        }
+        const el3 = document.getElementById('setupSSH');
+        if (el3) {
+            el3.innerHTML = CC;
+            resizeTextarea(el3);
         }
     };
 
