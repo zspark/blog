@@ -138,6 +138,11 @@ Start-Service sshd
 New-NetFirewallRule -Name sshd -DisplayName "OpenSSH Server" -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 # 2-1) on Linux terminal: (-v for verbose output)
 ssh -v your_windows_username@192.168.x,y
+# 2-10) OR
+sudo pacman -S sshfs
+# 2-11) mount windows folder to (e.g.) winpc under home:
+mkdir ~/winpc
+sshfs your_windows_username@192.168.x.y:/D:/somefolder ~/winpc
 `;
     function copyToClipboard(elementId) {
         var copyText = document.getElementById(elementId);
