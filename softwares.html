@@ -64,10 +64,8 @@
                     </li>
                 </ul>
             </div>
-
-
-
         </div>
+
 
         <input class="tabs-radio" type="radio" name="mytabs" id="tab2" onchange="refreshOutput()">
         <label class="tabs-label text-normal padding-8-20" for="tab2">SYSTEM</label>
@@ -88,6 +86,55 @@
                 </ul>
             </div>
         </div>
+
+
+        <input class="tabs-radio" type="radio" name="mytabs" id="tab3" onchange="refreshOutput()">
+        <label class="tabs-label text-normal padding-8-20" for="tab3">CONFIGURATION</label>
+        <div class="tabs-content">
+            <div id="configuration">
+                Setup SSH server on Windows
+                <ol> 
+                    <li>on windows terminal (powershell), this step might take a while to execute:
+                        <ul>
+                            <li><code>Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0</code></li>
+                        </ul>
+                    </li>
+                    <li>start up SSH server:
+                        <ul>
+                            <li><code>Start-Service sshd</code></li>
+                        </ul>
+                    </li>
+                    <li>recommended. (let firewall pass though):
+                        <ul>
+                            <li><code>Start-Service sshd</code></li>
+                            <li><code>New-NetFirewallRule -Name sshd -DisplayName "OpenSSH Server" -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22</code> </li>
+                        </ul>
+                    </li>
+                </ol>
+
+
+                Edit files on Linux
+                <ol>
+                    <li>on Linux terminal: (-v for verbose output) 
+                        <ul>
+                            <li><code>ssh -v your_windows_username@192.168.x,y</code></li>
+                        </ul>
+                    </li>
+                    <li>OR 
+                        <ul>
+                            <li><code>sudo pacman -S sshfs</code></li>
+                        </ul>
+                    </li>
+                    <li>mount windows folder to (e.g.) winpc under home:
+                        <ul>
+                            <li><code>mkdir ~/winpc</code></li>
+                            <li><code>sshfs your_windows_username@192.168.x.y:/C:/your_folder ~/winpc</code></li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
 
     </div>
 </body>

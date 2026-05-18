@@ -439,11 +439,11 @@ a {
     order: 2;
 }
 
-#system code {
+#system code, #configuration code {
     color: red;
 }
 
-#system li {
+#system li, #configuration code{
     margin: 3px 0px;
 }
 
